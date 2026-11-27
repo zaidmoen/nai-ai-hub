@@ -21,3 +21,6 @@ The exact source supplied by the owner is stored at `src/shaders/ashen-press/sou
 
 ## V9 — Intelligence in Motion
 The main experience no longer exposes the book/library or Ashen Press experiments; their files remain reachable by direct URL for provenance. The cinematic hero uses one original native WebGL filament field and a local SVG fallback based on the same parametric curves. No CDN, React, Three.js import, or build is required for the main page. The field cards select the actual directory category; the original bilingual catalog, search, favorites, comparison, finder, and details remain intact. Palette: graphite, lavender, restrained cyan and field-specific accents. Motion: mild scroll parallax, visibility-aware rendering, once-only section reveals and reduced card tilt. The coffee-site inspiration is conceptual, not a copy of an identified website.
+
+## Atlas experience
+Design intent: a compact editorial knowledge platform, not a collection of unrelated effects. The graph is a CSS/SVG navigation map with five real destinations and live catalog counts. The same navigation, command search, spacing and dark/light tokens apply across active pages. Motion is limited to lightweight line flow and interaction feedback and respects reduced motion. No new runtime dependencies. Old visual experiments remain archived but are not linked from active pages.

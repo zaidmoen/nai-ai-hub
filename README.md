@@ -71,3 +71,6 @@ The implementation was also checked with 23 DOM interaction checks, 15 determini
 
 ## Library V2
 Skills Hub includes 20 entries (12 source-linked external projects and 8 downloadable NAI originals). External resources are not bundled or installed; consult their upstream README and license. MCP Hub includes 9 setup guides. Prompt Studio includes 34 templates with scoped execution and verification instructions. All three pages support curated picks, category search, secondary filters, sorting, and clear-filter recovery. Upstream sources reviewed on 2026-11-27; installation and browser behavior were not tested.
+
+## NAI Atlas experience
+The homepage now presents five functional resource portals in a single lightweight knowledge map instead of unrelated visual sections. The old sidebar task finder was removed; category filtering and tool favorites remain. All six active pages share a Developer Hub menu and a keyboard-accessible global search (Ctrl/Cmd+K or /) over the same four local catalogs. Results open the exact resource on its original page via a resource query parameter. `workspace.html` reads and removes the existing local favorite records for tools, prompts, skills and MCP; no account or backend is used. Archived ThreeUI files remain in the repository and are not loaded by the main experience. Browser/device verification remains required.

@@ -1,41 +1,9 @@
 'use strict';
 // Catalog: name, category, official link, Arabic description, English description, Arabic use case, English use case, color.
-const raw=[
-["ChatGPT","assist","https://chatgpt.com/","بساعدك تفهم المواضيع الصعبة وترتب أفكارك وتكتب وتراجع شغلك","Get help understanding difficult topics and working through ideas or drafts","اطلب منه يشرحلك فكرة من المحاضرة ويعطيك أمثلة عليها","Ask it to explain something from class and walk you through an example","#16816c"],
-["Claude","assist","https://claude.ai/","مفيد لما بدك تراجع نص طويل أو تحلل فكرة أو تفهم كود","Useful for working through long documents and explaining code","اعطيه مسودة تقريرك وخليه يحكيلك وين ممكن تحسنها","Share a report draft and ask what could be clearer","#b9664e"],
-["Gemini","assist","https://gemini.google.com/","بتقدر تسأله عن النصوص والصور وتستخدمه لتلخيص أفكارك","Ask questions about text and images or get help organizing ideas","خليه يرتبلك ملاحظات المحاضرة على شكل خطة مراجعة","Turn your lecture notes into a study plan","#526ac9"],
-["Microsoft Copilot","assist","https://copilot.microsoft.com/","بساعدك بالبحث والكتابة وترتيب أفكارك قبل ما تبدأ","Get help researching a topic or organizing your thoughts","جرب ترتب معه أفكار مشروع جماعي قبل ما تبلش فيه","Use it to plan a group project before getting started","#4664bd"],
-["DeepSeek","assist","https://www.deepseek.com/","بفيدك بالمسائل المنطقية وفهم الكود والشرح خطوة بخطوة","Work through reasoning problems and get explanations of code","خليه يشرحلك خطوات حل مسألة وحاول تتأكد منها بنفسك","Ask it to explain a solution and check each step yourself","#4b62b8"],
-["NotebookLM","research","https://notebooklm.google/","بتضيف عليه مصادر الدراسة وبساعدك تفهمها وتراجعها","Work with your own study materials and explore what they say","ارفع ملفات المساق المسموح بمشاركتها واطلب أسئلة للمراجعة","Use permitted course materials to make practice questions","#5553b0"],
-["Perplexity","research","https://www.perplexity.ai/","بجاوب على أسئلتك وبعطيك روابط ترجع فيها للمصادر","Find answers to questions with links to sources","ابدأ فيه بحثك وبعدين ارجع للمصادر الأصلية","Get started on a research topic and read the original sources","#247f87"],
-["Elicit","research","https://elicit.com/","بساعدك تلاقي أبحاث علمية وترتب النتائج اللي بتحتاجها","Find academic papers and organize the findings you need","استخدمه لترتيب الدراسات السابقة لمشروعك","Use it to organize papers for your literature review","#7451b3"],
-["Consensus","research","https://consensus.app/","بساعدك تعرف شو بتحكي الدراسات العلمية عن سؤال معين","See what published research says about a question","قارن نتائج أكثر من دراسة عن نفس الموضوع","Compare findings from different papers on the same topic","#335a9f"],
-["Scite","research","https://scite.ai/","بوضحلك كيف الأبحاث الثانية استشهدت بدراسة معينة","See how other papers have cited a particular study","راجع إذا الدراسات الثانية بتدعم نتائج البحث أو بتناقشها","Check whether other papers support or challenge a finding","#4f7a74"],
-["Connected Papers","research","https://www.connectedpapers.com/","بعرضلك الأبحاث المرتبطة ببعض بطريقة بصرية","See how related research papers connect","ابدأ من ورقة علمية واكتشف أبحاث قريبة من موضوعها","Start with one paper and find related work","#6b5fa7"],
-["GitHub Copilot","code","https://github.com/features/copilot","بساعدك تكتب الكود وتفهمه من داخل محرر البرمجة","Get code suggestions and explanations inside your editor","اطلب منه يشرحلك دالة ويقترح حالات اختبار إلها","Ask for an explanation of a function and some test cases","#373641"],
-["Cursor","code","https://cursor.com/","محرر كود بساعدك تفهم مشروعك وتعدل عليه","A code editor that helps you understand and edit your project","خليه يشرحلك بنية المشروع قبل ما تغير أي ملف","Explore how a project is organized before editing files","#3e3c57"],
-["Replit","code","https://replit.com/","بيئة برمجة بتشتغل من المتصفح وفيها مساعد ذكي","Write and run code in your browser with AI assistance","جرب فكرتك وابن نسخة بسيطة من تطبيقك","Build a small prototype to try out an idea","#bc632d"],
-["Google AI Studio","code","https://aistudio.google.com/","بتقدر تجرب نماذج Gemini وتبني عليها أفكار لتطبيقاتك","Try Gemini models and explore how to use them in an app","جرب أكثر من طلب للنموذج قبل ما تربطه بمشروعك","Try different prompts before connecting a model to your project","#3f71c4"],
-["Hugging Face","code","https://huggingface.co/","مكان بتلاقي فيه نماذج جاهزة ومجموعات بيانات وتجارب","Find AI models and datasets alongside interactive demos","دور على نموذج لتصنيف النصوص يناسب مشروعك","Find a text classification model for your project","#9a6d1e"],
-["Canva","design","https://www.canva.com/","بساعدك تصمم بوسترات وعروض ومحتوى بصري بسهولة","Create posters and presentations with helpful design tools","صمم بوستر لفعالية بالجامعة","Design a poster for a university event","#6472bd"],
-["Adobe Firefly","design","https://firefly.adobe.com/","بتقدر تولد صور من وصف وتعدل على المحتوى البصري","Generate images from a description and edit visuals","جرب فكرة بصرية لحملة طلابية","Explore a visual idea for a student campaign","#b74771"],
-["Gamma","design","https://gamma.app/","بحول أفكارك ومخططاتك لمسودات عروض ومستندات","Turn an outline into a draft presentation or document","جهز مسودة عرض من خطة مشروعك","Start a presentation from your project outline","#7455b9"],
-["Ideogram","design","https://ideogram.ai/","مفيد لتوليد صور وتصاميم فيها نصوص واضحة","Generate images and designs that include text","جرب أكثر من تصميم لبوستر فيه عنوان","Try a few poster designs with a title","#4d4969"],
-["Midjourney","design","https://www.midjourney.com/","بولد صور إبداعية بناء على الوصف اللي بتكتبه","Create imaginative images from your own descriptions","جرب أفكار بصرية مختلفة لهوية مشروعك","Explore visual directions for your project","#77619d"],
-["Grammarly","writing","https://www.grammarly.com/","بساعدك تراجع كتابتك بالإنجليزي وتوضح المعنى","Make your English writing clearer and easier to read","راجع رسالة رسمية أو تقرير قبل ما تبعته","Review an email or report before sending it","#258568"],
-["DeepL","writing","https://www.deepl.com/","مفيد لترجمة النصوص ومراجعة صياغتها","Translate text and get help with wording","ترجم فقرة وراجع المصطلحات حسب تخصصك","Translate a paragraph and check the terminology","#24456a"],
-["QuillBot","writing","https://quillbot.com/","بساعدك تلخص النصوص وتعيد صياغة شغلك وتراجعه","Summarize text and get help refining your writing","حسن صياغة نص كتبته بنفسك مع الحفاظ على توثيق المصادر","Refine your own draft and keep the sources credited","#387d58"],
-["Runway","media","https://runwayml.com/","بتقدر تولد فيديوهات وتعدل عليها بأدوات الذكاء الاصطناعي","Generate and edit videos with AI tools","جرب مشهد قصير لمشروع إعلامي","Try a short scene for a media project","#42425a"],
-["ElevenLabs","media","https://elevenlabs.io/","بساعدك تولد كلام مسموع وتشتغل على الصوت","Generate speech and work with audio","جرب تعليق صوتي من غير ما تقلد صوت حدا بدون إذنه","Try a narration without copying someone's voice without permission","#4a5062"],
-["Descript","media","https://www.descript.com/","بتقدر تعدل تسجيلات الصوت والفيديو من خلال النص","Edit audio and video by working with the transcript","عدل تسجيل مقابلة بعد ما تاخد موافقة المشاركين","Edit an interview recording with everyone's permission","#5862b4"],
-["Wolfram Alpha","data","https://www.wolframalpha.com/","بساعدك تحسب وتحل مسائل بالرياضيات والعلوم","Work through calculations and math or science problems","تأكد من ناتج مسألة حليتها بنفسك","Check the answer to a problem you solved","#b75740"],
-["Google Colab","data","https://colab.research.google.com/","بتقدر تكتب Python من المتصفح وتجرب تحليل البيانات ونماذج الذكاء الاصطناعي","Run Python in your browser for data analysis and AI experiments","حلل مجموعة بيانات واعرض النتائج برسومات","Analyze a dataset and visualize the results","#b57832"],
-["DataRobot","data","https://www.datarobot.com/","منصة بتساعدك تبني نماذج تعلم آلي وتدير تطبيقات الذكاء الاصطناعي","Build machine learning models and manage AI applications","استكشف خطوات بناء نموذج للتنبؤ","Explore the steps involved in building a prediction model","#575ca0"]
-];
+const raw=window.NAI_TOOLS_RAW;
 const tools=raw.map((r,id)=>({id,name:r[0],cat:r[1],url:r[2],ar:r[3],en:r[4],useAr:r[5],useEn:r[6],color:r[7]}));
 const cats={all:['الكل','All'],assist:['المساعدات الذكية','AI Assistants'],research:['البحث والدراسة','Research & Study'],code:['البرمجة','Development'],design:['التصميم والعروض','Design & Slides'],writing:['الكتابة والترجمة','Writing & Translation'],media:['الصوت والفيديو','Audio & Video'],data:['البيانات والرياضيات','Data & Math']};
-const tasks=[['','اختار مهمة','Choose a task'],['research','البحث العلمي أو الدراسة','Research or study'],['code','كتابة كود أو بناء تطبيق','Code or build an app'],['design','تصميم بوستر أو عرض','Design a poster or slides'],['writing','كتابة تقرير أو ترجمة','Write or translate'],['media','إنتاج فيديو أو صوت','Produce audio or video'],['data','تحليل البيانات أو الرياضيات','Analyze data or solve math'],['assist','شرح مفهوم أو عصف ذهني','Explain a concept or brainstorm']];
-const dict={arenaEntryTitle:['قارن نماذج الذكاء الاصطناعي','Compare AI models'],arenaEntryDesc:['شوف نتائج الاختبارات والتكلفة والسرعة برسومات واضحة واختار الموديل اللي بناسب شغلك','Compare published benchmark scores and API cost and speed in one place'],arenaEntryOpen:['افتح المقارنة','Open Model Arena'],skillsEntry:['مهارات جاهزة للمساعد البرمجي بتقدر تحملها وتضيفها لمشروعك','Reusable agent skills you can download and add to your project'],mcpEntry:['اربط مساعدك مع أدوات التطوير والمصادر اللي بتحتاجها','Connect your agent to the development tools and resources you need'],promptsNav:['Prompt Studio','Prompt Studio'],promptEntryTitle:['برومبتات تساعدك تشتغل على مشاريعك','Prompts for your next project'],promptEntryDesc:['برومبتات جاهزة للبرمجة والتصميم وتعلم الآلة بتقدر تعدلها حسب مشروعك وتنسخها لأي مساعد ذكي','Practical prompts for coding and design or machine learning that you can adapt to your project and use with any AI assistant'],promptEntryOpen:['افتح الاستوديو','Open the studio'],cinemaKicker:["دليل الذكاء الاصطناعي للطلاب","AI TOOLS FOR STUDENTS"],cinemaExplore:["استكشف الأدوات","Explore tools"],cinemaFields:["اختار مجالك","Browse by field"],fieldsTitle:["شو حابب تعمل","What do you want to work on"],fieldsDesc:["اختار المجال اللي بهمك وشوف الأدوات اللي ممكن تساعدك فيه","Pick a field to see which tools can help you"],fieldsLabel:["مجالات","FIELDS"],field_assist:["المساعدات الذكية","AI assistants"],fieldTag_assist:["اسأل وافهم","Ask and learn"],field_research:["البحث والدراسة","Research & study"],fieldTag_research:["دور على أبحاث ومراجع","Find papers and sources"],field_code:["البرمجة","Development"],fieldTag_code:["اكتب كود وطور مشاريعك","Write code and build projects"],field_design:["التصميم والعروض","Design & slides"],fieldTag_design:["صمم بوسترات وعروض","Design posters and slides"],field_writing:["الكتابة والترجمة","Writing & translation"],fieldTag_writing:["اكتب وترجم وراجع نصوصك","Write and translate"],field_media:["الصوت والفيديو","Audio & video"],fieldTag_media:["اشتغل على الصوت والفيديو","Work with audio and video"],field_data:["البيانات والرياضيات","Data & math"],fieldTag_data:["حل مسائل وحلل بيانات","Solve problems and analyze data"],favorites:['المفضلة','Favorites'],hero:['تعلم أكثر\nوجرب أدوات جديدة','Find the right tools\nfor the way you learn'],intro:['جمعنالك أدوات الذكاء الاصطناعي اللي بتفيدك بالدراسة والبحث والبرمجة والتصميم بمكان واحد من جمعية ناي للذكاء الاصطناعي','We brought together useful AI tools for studying and research as well as coding and design at Najah AI Society'],searchLabel:['ابحث عن أداة','Search tools'],tools:['أداة','AI tools'],categories:['مجالات','Categories'],hub:['منصة واحدة','Student hub'],finder:['مش عارف من وين تبدأ','Need help getting started'],finderDesc:['احكيلنا شو بدك تعمل ومنعرضلك الأدوات اللي ممكن تفيدك','Choose what you need to do and we will show you relevant tools'],taskLabel:['اختر المهمة','Choose a task'],directory:['استكشف الأدوات','Explore tools'],directoryDesc:['تصفح الأدوات وشوف كيف ممكن تستفيد منها بتخصصك ومشاريعك','Browse the tools and see how they might help with your studies and projects'],disclaimer:['الدليل مستقل عن الشركات المطورة للأدوات','An independent directory with no affiliation to tool providers'],responsible:['استخدم الذكاء الاصطناعي بمسؤولية','Use AI responsibly'],responsibleDesc:['تأكد من المعلومات ومصادرها قبل ما تعتمد عليها وخلي بياناتك الشخصية والخاصة بعيدة عن الأدوات والتزم بتعليمات مدرس المساق واستخدم الذكاء الاصطناعي عشان تتعلم وتفهم شغلك بنفسك','Check information against its sources and keep personal or confidential data private\nFollow your course rules and use AI to learn rather than submitting work you do not understand'],plans:['الأسعار والخطط وتوفر الأدوات ممكن تتغير فالأفضل تتأكد من الموقع الرسمي','Prices and availability can change so check the official website for current information'],footer:['مبادرة من طلاب جامعة النجاح','A student initiative from An Najah National University'],clear:['مسح','Clear'],compare:['مقارنة','Compare']};
+const dict={atlasKicker:['من طلاب النجاح لكل طالب','BY NAJAH STUDENTS FOR STUDENTS'],atlasIntro:['كل اللي بتحتاجه لتتعلم وتبرمج وتصمم وتشتغل على مشاريعك بالذكاء الاصطناعي بمكان واحد','Find AI tools and practical resources for studying and building your next project in one place'],arenaEntryTitle:['قارن نماذج الذكاء الاصطناعي','Compare AI models'],arenaEntryDesc:['شوف نتائج الاختبارات والتكلفة والسرعة برسومات واضحة واختار الموديل اللي بناسب شغلك','Compare published benchmark scores and API cost and speed in one place'],arenaEntryOpen:['افتح المقارنة','Open Model Arena'],skillsEntry:['مهارات جاهزة للمساعد البرمجي بتقدر تحملها وتضيفها لمشروعك','Reusable agent skills you can download and add to your project'],mcpEntry:['اربط مساعدك مع أدوات التطوير والمصادر اللي بتحتاجها','Connect your agent to the development tools and resources you need'],promptsNav:['Prompt Studio','Prompt Studio'],promptEntryTitle:['برومبتات تساعدك تشتغل على مشاريعك','Prompts for your next project'],promptEntryDesc:['برومبتات جاهزة للبرمجة والتصميم وتعلم الآلة بتقدر تعدلها حسب مشروعك وتنسخها لأي مساعد ذكي','Practical prompts for coding and design or machine learning that you can adapt to your project and use with any AI assistant'],promptEntryOpen:['افتح الاستوديو','Open the studio'],cinemaKicker:["دليل الذكاء الاصطناعي للطلاب","AI TOOLS FOR STUDENTS"],cinemaExplore:["استكشف الأدوات","Explore tools"],cinemaFields:["اختار مجالك","Browse by field"],fieldsTitle:["شو حابب تعمل","What do you want to work on"],fieldsDesc:["اختار المجال اللي بهمك وشوف الأدوات اللي ممكن تساعدك فيه","Pick a field to see which tools can help you"],fieldsLabel:["مجالات","FIELDS"],field_assist:["المساعدات الذكية","AI assistants"],fieldTag_assist:["اسأل وافهم","Ask and learn"],field_research:["البحث والدراسة","Research & study"],fieldTag_research:["دور على أبحاث ومراجع","Find papers and sources"],field_code:["البرمجة","Development"],fieldTag_code:["اكتب كود وطور مشاريعك","Write code and build projects"],field_design:["التصميم والعروض","Design & slides"],fieldTag_design:["صمم بوسترات وعروض","Design posters and slides"],field_writing:["الكتابة والترجمة","Writing & translation"],fieldTag_writing:["اكتب وترجم وراجع نصوصك","Write and translate"],field_media:["الصوت والفيديو","Audio & video"],fieldTag_media:["اشتغل على الصوت والفيديو","Work with audio and video"],field_data:["البيانات والرياضيات","Data & math"],fieldTag_data:["حل مسائل وحلل بيانات","Solve problems and analyze data"],favorites:['المفضلة','Favorites'],hero:['تعلم أكثر\nوابن أشياء جديدة','Discover more\nBuild something new'],intro:['جمعنالك أدوات الذكاء الاصطناعي اللي بتفيدك بالدراسة والبحث والبرمجة والتصميم بمكان واحد من جمعية ناي للذكاء الاصطناعي','We brought together useful AI tools for studying and research as well as coding and design at Najah AI Society'],searchLabel:['ابحث عن أداة','Search tools'],tools:['أداة','AI tools'],categories:['مجالات','Categories'],hub:['منصة واحدة','Student hub'],finder:['مش عارف من وين تبدأ','Need help getting started'],finderDesc:['احكيلنا شو بدك تعمل ومنعرضلك الأدوات اللي ممكن تفيدك','Choose what you need to do and we will show you relevant tools'],taskLabel:['اختر المهمة','Choose a task'],directory:['استكشف الأدوات','Explore tools'],directoryDesc:['تصفح الأدوات وشوف كيف ممكن تستفيد منها بتخصصك ومشاريعك','Browse the tools and see how they might help with your studies and projects'],disclaimer:['الدليل مستقل عن الشركات المطورة للأدوات','An independent directory with no affiliation to tool providers'],responsible:['استخدم الذكاء الاصطناعي بمسؤولية','Use AI responsibly'],responsibleDesc:['تأكد من المعلومات ومصادرها قبل ما تعتمد عليها وخلي بياناتك الشخصية والخاصة بعيدة عن الأدوات والتزم بتعليمات مدرس المساق واستخدم الذكاء الاصطناعي عشان تتعلم وتفهم شغلك بنفسك','Check information against its sources and keep personal or confidential data private\nFollow your course rules and use AI to learn rather than submitting work you do not understand'],plans:['الأسعار والخطط وتوفر الأدوات ممكن تتغير فالأفضل تتأكد من الموقع الرسمي','Prices and availability can change so check the official website for current information'],footer:['مبادرة من طلاب جامعة النجاح','A student initiative from An Najah National University'],clear:['مسح','Clear'],compare:['مقارنة','Compare']};
 Object.assign(dict,{edition:['دليل ناي للذكاء الاصطناعي','THE NAI AI INDEX'],exploreNav:['استكشف','Explore'],finderNav:['دليل الاختيار','Tool finder'],guideNav:['الاستخدام المسؤول','Responsible AI'],browse:['تصفح المكتبة','Browse the directory'],metric1:['أدوات مفيدة للدراسة','Tools for studying'],metric2:['من الدراسة إلى الإبداع','From study to creation'],metric3:['من الطلاب وإليهم','Built for students'],metric4:['مبادرة طلابية','Student initiative']});
 const categoryPaths={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',assist:'<path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/>',research:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',code:'<path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/>',design:'<path d="m12 3 9 9-9 9-9-9zM12 3v18M3 12h18"/>',writing:'<path d="M4 5h16M12 5v15M8 20h8"/>',media:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4z"/>',data:'<path d="M4 20V4M4 20h17M9 16v-5m5 5V7m5 9V3"/>'};
 
@@ -124,13 +92,13 @@ function notify(message) {
   }, 4000);
 }
 function syncSearchInputs() {
-  for (const id of ['search', 'directorySearch']) {
+  for (const id of ['directorySearch']) {
     if ($(id).value !== query) $(id).value = query;
   }
 }
 function applyTheme() {
   document.documentElement.dataset.theme = theme;
-  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#090e22' : '#f4f5fc';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0c0d12' : '#f6f6f9';
   const title = theme === 'dark'
     ? tr('تفعيل المظهر الفاتح', 'Switch to light theme')
     : tr('تفعيل المظهر الداكن', 'Switch to dark theme');
@@ -156,13 +124,11 @@ function applyLanguage() {
   label('metrics', tr('نظرة على الدليل', 'Directory overview'));
   label('filters', tr('تصفية الأدوات', 'Filter tools'));
   label('chips', tr('التصنيفات', 'Categories'));
-  label('heroSearchForm', tr('البحث في الأدوات', 'Search AI tools'));
   label('directorySearchForm', tr('البحث في الدليل', 'Search the directory'));
-  label('heroSearch', tr('عرض نتائج البحث', 'Show search results'));
   label('comparebar', tr('الأدوات المحددة للمقارنة', 'Selected tools for comparison'));
   label('backtop', tr('العودة للأعلى', 'Back to top'));
   label('close', tr('إغلاق', 'Close dialog'));
-  for (const id of ['search', 'directorySearch']) {
+  for (const id of ['directorySearch']) {
     $(id).placeholder = tr('ابحث عن أداة أو مهمة', 'Search for a tool or task');
   }
   setText($('total'), String(tools.length));
@@ -170,9 +136,6 @@ function applyLanguage() {
   const sortValue = $('sort').value || 'default';
   $('sort').innerHTML = `<option value="default">${tr('الترتيب الافتراضي', 'Default order')}</option><option value="az">${tr('حسب الاسم', 'By name')}</option>`;
   $('sort').value = sortValue;
-  const taskValue = $('task').value;
-  $('task').innerHTML = tasks.map(task => `<option value="${task[0]}">${task[lang === 'ar' ? 1 : 2]}</option>`).join('');
-  $('task').value = taskValue;
   $('chips').innerHTML = Object.keys(cats).map(key => `
     <button class="chip" data-cat="${key}" type="button" aria-pressed="false" aria-controls="grid">
       <span class="cat-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24">${categoryPaths[key]}</svg></span>
@@ -355,7 +318,6 @@ function resetFilters() {
   cat = 'all';
   onlyFav = false;
   query = '';
-  $('task').value = '';
   render();
   $('directorySearch').focus({ preventScroll: true });
 }
@@ -429,17 +391,10 @@ function showComparison() {
     </div><p class="notice">${text('plans')}</p>`);
 }
 
-document.querySelector('.fields-grid').addEventListener('click', event => {
-  const field = event.target.closest('[data-field]');
-  if (!field || !Object.prototype.hasOwnProperty.call(cats, field.dataset.field)) return;
-  cat = field.dataset.field; onlyFav = false; query = ''; $('task').value = '';
-  showResults();
-});
 $('chips').addEventListener('click', event => {
   const chip = event.target.closest('[data-cat]');
   if (!chip) return;
   cat = chip.dataset.cat;
-  $('task').value = '';
   render();
   // The clicked button remains mounted and keyboard focus stays put.
 });
@@ -452,26 +407,19 @@ $('grid').addEventListener('click', event => {
   else if (button.dataset.act === 'compare') toggleComparison(id);
   else if (button.dataset.act === 'detail') showDetails(id, button.closest('.card-surface')?.getBoundingClientRect());
 });
-for (const id of ['search', 'directorySearch']) {
+for (const id of ['directorySearch']) {
   $(id).addEventListener('input', scheduleSearch);
   $(id).addEventListener('compositionend', scheduleSearch);
 }
-for (const id of ['heroSearchForm', 'directorySearchForm']) {
+for (const id of ['directorySearchForm']) {
   $(id).addEventListener('submit', event => { event.preventDefault(); showResults(); });
 }
 $('sort').addEventListener('change', render);
 $('resetFilters').addEventListener('click', resetFilters);
-$('task').addEventListener('change', () => {
-  cat = $('task').value || 'all';
-  onlyFav = false;
-  query = '';
-  showResults();
-});
 $('favToggle').addEventListener('click', () => {
   onlyFav = !onlyFav;
   cat = 'all';
   query = '';
-  $('task').value = '';
   showResults();
 });
 $('lang').addEventListener('click', () => {
@@ -514,48 +462,6 @@ $('modal').addEventListener('click', event => {
   const bounds = $('modal').getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) motion.closeDialog($('modal'));
 });
-document.addEventListener('keydown', event => {
-  const target = document.activeElement;
-  if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey || event.isComposing || $('modal').open ||
-      target?.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')) return;
-  event.preventDefault();
-  const inDirectory = $('directory').getBoundingClientRect().top < innerHeight * .5;
-  $(inDirectory ? 'directorySearch' : 'search').focus();
-});
-function syncNav() {
-  document.querySelectorAll('.navlinks a').forEach(link => {
-    const active = link.getAttribute('href') === (location.hash || '#directory');
-    link.classList.toggle('nav-active', active);
-    if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-  });
-}
-document.querySelector('a[href="#finder"]').addEventListener('click', () => { motion.setDisclosureOpen($('finder'), true); });
-window.addEventListener('hashchange', syncNav);
-$('finder').open = !matchMedia('(max-width: 760px)').matches || location.hash === '#finder';
-motion.bindDisclosure($('finder'), $('grid'));
-
-/* Native search suggestions, using the exact same catalog and normalized query. */
-const command = $('heroSuggestions');
-const commandInput = $('search');
-function hideSuggestions(){command.hidden=true;command.replaceChildren();commandInput.setAttribute('aria-expanded','false');}
-function renderSuggestions(){
-  const words=normalize(commandInput.value).split(/\s+/).filter(Boolean);
-  if(!words.length||!$('heroSearchForm').contains(document.activeElement)){hideSuggestions();return;}
-  const matches=tools.filter(tool=>words.every(w=>searchIndex.get(tool.id).includes(w))).sort((a,b)=>Number(normalize(b.name).startsWith(words[0]))-Number(normalize(a.name).startsWith(words[0]))).slice(0,5);
-  command.innerHTML='<p class="command-caption">'+escapeHtml(tr('أدوات ممكن تكون بتدور عليها','Suggested tools'))+'</p>'+ (matches.length?matches.map(tool=>'<button type="button" class="command-option" data-suggest="'+tool.id+'"><span class="command-mark" style="--mark:'+tool.color+'" aria-hidden="true">'+escapeHtml(tool.name.slice(0,2))+'</span><span><bdi>'+escapeHtml(tool.name)+'</bdi><small>'+escapeHtml(cName(tool.cat))+'</small></span>'+icon('arrow')+'</button>').join(''):'<p class="command-empty">'+escapeHtml(tr('ما لقينا أدوات مطابقة','No matching tools'))+'</p>');
-  command.hidden=false;commandInput.setAttribute('aria-expanded','true');
-}
-commandInput.setAttribute('aria-controls','grid heroSuggestions');commandInput.setAttribute('aria-expanded','false');
-commandInput.addEventListener('input',e=>{if(!e.isComposing)renderSuggestions();});
-commandInput.addEventListener('compositionend',renderSuggestions);
-commandInput.addEventListener('focus',renderSuggestions);
-commandInput.addEventListener('keydown',e=>{if(e.key==='ArrowDown'&&!command.hidden){const first=command.querySelector('button');if(first){e.preventDefault();first.focus();}}else if(e.key==='Escape'&&!command.hidden){e.preventDefault();hideSuggestions();}});
-command.addEventListener('keydown',e=>{const buttons=[...command.querySelectorAll('button')],i=buttons.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();commandInput.focus();hideSuggestions();}else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const next=i+(e.key==='ArrowDown'?1:-1);if(next<0)commandInput.focus();else buttons[Math.min(next,buttons.length-1)]?.focus();}});
-command.addEventListener('click',e=>{const b=e.target.closest('[data-suggest]');if(!b)return;const tool=tools[Number(b.dataset.suggest)];if(!tool)return;cat='all';onlyFav=false;query=tool.name;$('task').value='';hideSuggestions();showResults();});
-document.querySelector('.hero-command').addEventListener('focusout',e=>{if(!e.currentTarget.contains(e.relatedTarget))hideSuggestions();});
-document.addEventListener('pointerdown',e=>{if(!e.target.closest('.hero-command'))hideSuggestions();},{passive:true});
-$('heroSearchForm').addEventListener('submit',hideSuggestions);
-$('lang').addEventListener('click',hideSuggestions);
-
 applyLanguage();
-syncNav();
+const deepLink = new URLSearchParams(location.search).get('resource');
+if (deepLink !== null && /^\d+$/.test(deepLink) && tools[Number(deepLink)]) showDetails(Number(deepLink));
