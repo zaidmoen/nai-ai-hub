@@ -25,6 +25,7 @@
    const y=Math.max(0,Math.min(1,(pointer.y-r.top)/Math.max(1,r.height)));
    get(active).target=[(0.5-y)*11,(x-0.5)*11,-5,x*100,y*100,1,(x-.5)*16,(y-.5)*12];
   }
+  let needsFrame=false;
   for(const [surface,s] of states){
    if(!surface.isConnected){clear(surface);if(active===surface){active=null;pointer=null;}continue;}
    let moving=false;
@@ -35,9 +36,10 @@
     const v=i===5?Math.max(0,Math.min(1,s.v[i])):s.v[i];
     surface.style.setProperty(names[i],v.toFixed(3)+units[i]);
    }
-   if(!moving&&surface!==active)clear(surface);
+   if(moving)needsFrame=true;
+   else if(surface!==active)clear(surface);
   }
-  if(states.size)kick();else last=0;
+  if(needsFrame)kick();else last=0;
  }
  grid.addEventListener('pointermove',e=>{
   if(!enabled()||e.pointerType==='touch')return;
@@ -46,16 +48,22 @@
   if(active!==surface){release();active=surface;get(surface);}
   pointer={x:e.clientX,y:e.clientY};kick();
  },{passive:true});
- grid.addEventListener('pointerout',e=>{if(active&&!active.contains(e.relatedTarget))release();});
+ grid.addEventListener('pointerout',e=>{if(active&&(!(e.relatedTarget instanceof Node)||!active.contains(e.relatedTarget)))release();});
  grid.addEventListener('pointerleave',release);
  grid.addEventListener('pointercancel',reset);
  window.addEventListener('blur',reset);
  window.addEventListener('resize',reset,{passive:true});
+ window.addEventListener('scroll',reset,{passive:true});
  window.addEventListener('pagehide',reset);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});
  reduced.addEventListener('change',reset);fine.addEventListener('change',reset);
  const mutations=new MutationObserver(()=>{if(active&&!active.isConnected)reset();});
  mutations.observe(grid,{childList:true});
+ // Keep the real Details button as the keyboard action; pointer users may tap the surface.
+ grid.addEventListener('click',e=>{
+  if(e.target.closest('a,button,input,select,label')||getSelection()?.toString())return;
+  e.target.closest('.card-surface')?.querySelector('[data-act="detail"]')?.click();
+ });
  // Mobile has a short native press reaction; no tilt or ongoing frame loop.
  grid.addEventListener('pointerdown',e=>{
   if(reduced.matches||e.pointerType!=='touch'||e.target.closest('a,button'))return;
