@@ -21,9 +21,13 @@ Then visit `http://localhost:8000`. No build step, package installation, or exte
 
 Press `/` to focus search, `Enter` to move to results, and `Escape` to close a dialog.
 
+## Prompt Studio
+
+Open `prompts.html` from the main navigation or the homepage. The studio includes 22 original English prompt templates with Arabic and English browsing labels across 7 technical and academic fields. Search and filter prompts, save favorites locally, customize project context, stack, goals and constraints, and edit or copy the final text. No accounts, AI API calls, or backend are required. Prompt content is in `prompts-data.js`; the editor does not upload or persist the entered project details.
+
 ## Frontend performance
 
-The active page loads one stylesheet and two deferred scripts. The cover uses a locally hosted WebP photograph in 540px and 1080px variants. There are no animation loops or CDN imports.
+The current homepage uses a local WebGL filament scene and an SVG fallback. Rendering is visibility-aware and respects reduced motion. Prompt Studio has no GPU renderer or external runtime dependencies.
 
 The search index is prepared once. Filtering and sorting reuse card nodes; favorite and comparison actions update controls in place. Changing the theme does not rebuild the catalog. The original Aurora artwork remains in `assets/` as a reference and is not downloaded by the page.
 
