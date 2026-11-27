@@ -158,31 +158,13 @@ function matchingTools() {
 }
 
 /* Original category artwork: small optical diagrams, not provider logos. */
-function cardArt(tool) {
-  const drawings = {
-    assist: '<ellipse cx="180" cy="48" rx="58" ry="23" transform="rotate(-23 180 48)"/><ellipse cx="180" cy="48" rx="58" ry="23" transform="rotate(23 180 48)"/><ellipse cx="180" cy="48" rx="24" ry="43"/><circle cx="180" cy="48" r="8" fill="currentColor" stroke="none"/><circle cx="230" cy="32" r="3" fill="currentColor"/>',
-    research: '<circle cx="184" cy="44" r="34"/><circle cx="184" cy="44" r="23" stroke-dasharray="2 5"/><circle cx="184" cy="44" r="10"/><path d="M208 68l22 19M142 44h84M184 4v80"/><circle cx="184" cy="44" r="3" fill="currentColor"/>',
-    code: '<path d="M164 20l-32 27 32 27m36-54 32 27-32 27m-10-60-20 66"/><path d="M114 13h18m96 70h18M111 20v16m138 26v18" opacity=".5"/>',
-    design: '<path d="M180 5l46 43-46 43-46-43zM180 21l29 27-29 27-29-27zM134 48h92M180 5v86"/><circle cx="180" cy="48" r="13"/><circle cx="226" cy="48" r="3" fill="currentColor"/>',
-    writing: '<path d="M145 17h61l18 18v47h-79zM206 17v18h18M158 39h33m-33 12h51m-51 12h42"/><path d="M132 25v62h70" opacity=".45"/>',
-    media: '<rect x="135" y="17" width="90" height="61" rx="8"/><path d="M171 33l26 15-26 15z" fill="currentColor" fill-opacity=".2"/><path d="M126 85h108M126 10h108" stroke-dasharray="4 5"/>',
-    data: '<path d="M129 77h105M136 77V18M148 68V50m15 18V37m15 31V54m15 14V27m15 41V42m15 26V15" stroke-width="4"/><path d="M145 37l19-14 15 10 18-17 12 7 16-17" opacity=".55"/>'
-  };
-  const drawing = drawings[tool.cat] || drawings.assist;
-  const n = String(tool.id+1).padStart(2,'0');
-  return '<div class="card-art" aria-hidden="true"><span class="card-index">FIELD '+n+'</span><svg viewBox="0 0 280 96" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="1.25"><g opacity=".3"><path d="M0 24h280M0 48h280M0 72h280M40 0v96M80 0v96M120 0v96M160 0v96M200 0v96M240 0v96" stroke-dasharray="1 5"/><path d="M8 8h10M8 8v10m264 70h-10m10 0V78"/></g><g class="card-diagram">'+drawing+'</g></svg><span class="card-art-glint"></span></div>';
-}
-
 function createCard(tool) {
   const template = document.createElement('template');
-  const initials = tool.name.includes(' ')
-    ? tool.name.split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase()
-    : tool.name.slice(0, 2);
   template.innerHTML = `
     <article class="tool" data-tool-id="${tool.id}" aria-labelledby="tool-${tool.id}" style="--tool-color:${tool.color}">
-      <div class="card-surface">${cardArt(tool)}
+      <div class="card-surface">
       <div class="cardtop">
-        <div class="mark" style="--mark:${tool.color}" aria-hidden="true">${escapeHtml(initials)}</div>
+        <div class="mark" style="--mark:${tool.color}" aria-hidden="true">${window.NAI_ICONS.resource("tools",tool.id,tool.cat)}</div>
         <div class="toolname"><h3 id="tool-${tool.id}"><bdi>${escapeHtml(tool.name)}</bdi></h3><div class="category">${cName(tool.cat)}</div></div>
         <button class="heart" type="button" data-act="fav" data-id="${tool.id}" aria-pressed="false">${icon('heart')}${icon('heart')}</button>
       </div>

@@ -85,3 +85,6 @@ Reference-inspired dashboard with desktop sidebar, compare, leaderboard, benchma
 
 ## Neural Atlas visual identity
 Prompt Studio, Skills Hub, MCP Hub and My Workspace share the new desktop sidebar, responsive navigation, distinct local SVG hero illustrations and refined catalog cards. Grid/list switches preserve filters; the MCP directory opens in list mode. The MCP network links to actual setup guides, not active connections. The skill spotlight uses an existing upstream entry. Workspace charts use actual local favorites and link to saved Arena comparisons. No fabricated activity, ratings, usage metrics or live connections. No build or external visual dependencies.
+
+## Creative Intelligence
+Prompt Studio and MCP Hub use direct list-and-inspector workspaces, with prompt drafts retained for the current page session. Skills Hub is an editorial marketplace list with a curated spotlight; AI Tools has curated entry points and compact resource rows. Shared local semantic SVG icons and available brand marks replace initial-letter marks. See ICON-CREDITS.md. No fake logos, rankings, popularity, connections or model inference. The existing datasets and favorites remain unchanged. No runtime asset requests or build required.

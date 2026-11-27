@@ -30,7 +30,7 @@ function render(){const ms=rows();$('labStatus').textContent='';$('selectionStat
 const domainKeys=['finance','strategy','legal','medical'];
 const metricNames={index:['مؤشر الذكاء','Intelligence Index'],cost:['تكلفة المهمة','Task cost (USD)'],time:['وقت المهمة','Task time (min)'],latency:['أول توكن','First answer token (s)'],error:['نسبة الأخطاء','Error rate (%)']};
 const short=m=>({sol:'GPT-6.2 Sol',kimi:'Kimi K3.1 Pro',deepseek:'DeepSeek V4.1 Flash',fable:'Claude Fable 5.2',neon:'Gemini 4 Neon',astra:'GPT-6.2 Astra',opus:'Claude Opus 5.5'}[m.id]||m.name);
-const mark=m=>'<span class="lab-mark" style="--mc:'+esc(m.color)+'" aria-hidden="true">'+esc(({OpenAI:'O',Anthropic:'A',Google:'G',DeepSeek:'D','Moonshot AI':'K'}[m.creator]||m.name[0]))+'</span>';
+const mark=m=>'<span class="lab-mark" style="--mc:'+esc(m.color)+'" aria-hidden="true">'+window.NAI_ICONS.resource('models',m.id)+'</span>';
 let labView='compare',rank='index';
 const savedKey='nai-arena-comparisons',rawSaved=load(savedKey,[]);
 let saved=Array.isArray(rawSaved)?rawSaved.filter(x=>x&&Array.isArray(x.ids)&&x.ids.length>=1&&x.ids.length<=4&&x.ids.every(id=>models.some(m=>m.id===id))&&new Set(x.ids).size===x.ids.length).slice(0,30):[];

@@ -35,3 +35,6 @@ Compact research dashboard with SVG wave art, consistent model colors, letter ma
 
 ## Neural Atlas unified workspace
 The generated reference boards inform the visual language, not the implementation or data. Use violet/cyan highlights, restrained luminous geometry, a shared dark surface palette, dense navigation and per-section SVG artwork. Keep the full-width interactive homepage atlas, align Arena and library sidebars, retain light mode, and collapse sidebars on smaller screens. Real catalog counts and locally stored favorites drive summaries. The prompt editor is a template editor, not an inference playground; MCP is a setup directory, not an authenticated connection dashboard.
+
+## Creative Intelligence
+Functional layouts replace interchangeable catalog cards. Use a split workbench for text editing and server setup; editorial featured entries plus compact lists for discovery; clear local symbols with sourced brand marks where available. No decorative bitmap assets were needed: SVG remains crisp and inexpensive. Preserve keyboard focus, responsive layouts, and reduced-motion settings. Browser visual QA remains required.
