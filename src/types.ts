@@ -1,0 +1,12 @@
+export type Lang='ar'|'en';
+export type L=readonly string[];
+export type Group='tools'|'prompts'|'skills'|'mcp'|'models';
+export type SavedGroup=Exclude<Group,'models'>;
+export type Tool={id:number;name:string;category:string;url:string;desc:L;use:L;color:string};
+export type Prompt={id:string;category:string;title:L;description:L;template:string;level:string};
+export type Skill={id:string;category:string;title:L;desc:L;color:string;provider:string;external?:boolean;featured?:boolean;docs?:string;path?:string;content?:string;use?:L;slug?:string};
+export type Server={id:string;category:string;title:L;desc:L;color:string;provider:string;transport:string;url?:string;command?:string;args?:string[];docs:string;auth:L;note:L;use?:L};
+export type Metric='index'|'cost'|'time'|'latency'|'error'|'context'|'finance'|'strategy'|'legal'|'medical'|'science';
+export type Model={id:string;name:string;creator:string;provider:string;effort:string;license:string;color:string;url:string}&Record<Metric,number|null>;
+export type Resource={id:string|number;group:Group;title:L;desc:L;category:string;color:string;href:string;search:string};
+export type Comparison={ids:string[];date:string};

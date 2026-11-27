@@ -1,0 +1,16 @@
+import {createContext,useContext,useState,useEffect,type ReactNode} from 'react';
+import type {Lang,L,SavedGroup,Comparison} from './types';
+import {catalog,models} from './data/catalog';
+const keys:Record<SavedGroup,string>={tools:'nai-favs',prompts:'nai-prompt-favs',skills:'nai-skills-favs',mcp:'nai-mcp-favs'};
+function read<T>(key:string,d:T):T{try{return JSON.parse(localStorage.getItem(key)||'null')??d}catch{return d}}
+function write(key:string,v:unknown){try{localStorage.setItem(key,JSON.stringify(v))}catch{}}
+type Favorites=Record<SavedGroup,(string|number)[]>;
+function getFav():Favorites{return Object.fromEntries(Object.entries(keys).map(([g,k])=>{const v=read<unknown>(k,[]);return [g,Array.isArray(v)?[...new Set(v.filter(id=>catalog.some(x=>x.group===g&&x.id===id)))]:[]]})) as Favorites}
+function getComparisons():Comparison[]{const v=read<unknown>('nai-arena-comparisons',[]);return Array.isArray(v)?v.filter(x=>x&&Array.isArray(x.ids)&&x.ids.length>=1&&x.ids.length<=4&&new Set(x.ids).size===x.ids.length&&x.ids.every((id:unknown)=>models.some(m=>m.id===id))).slice(0,30):[]}
+type Hub={lang:Lang;theme:'dark'|'light';t:(ar:string,en:string)=>string;loc:(v:L)=>string;toggleLang:()=>void;toggleTheme:()=>void;favorites:Favorites;toggle:(g:SavedGroup,id:string|number)=>void;comparisons:Comparison[];saveComparison:(ids:string[])=>void;removeComparison:(i:number)=>void};
+const Context=createContext<Hub|null>(null);
+export function HubProvider({children}:{children:ReactNode}){const [lang,setLang]=useState<Lang>(()=>read<string>('nai-lang','ar')==='en'?'en':'ar'),[theme,setTheme]=useState<'dark'|'light'>(()=>read<string>('nai-theme','dark')==='light'?'light':'dark'),[favorites,setFavorites]=useState(getFav),[comparisons,setComparisons]=useState(getComparisons);
+useEffect(()=>{document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';write('nai-lang',lang)},[lang]);useEffect(()=>{document.documentElement.dataset.theme=theme;write('nai-theme',theme)},[theme]);useEffect(()=>{Object.entries(keys).forEach(([g,k])=>write(k,favorites[g as SavedGroup]))},[favorites]);useEffect(()=>write('nai-arena-comparisons',comparisons),[comparisons]);
+useEffect(()=>{const sync=()=>{setFavorites(getFav());setComparisons(getComparisons());setLang(read<string>('nai-lang','ar')==='en'?'en':'ar');setTheme(read<string>('nai-theme','dark')==='light'?'light':'dark')};window.addEventListener('storage',sync);return()=>window.removeEventListener('storage',sync)},[]);
+return <Context.Provider value={{lang,theme,t:(a,e)=>lang==='ar'?a:e,loc:v=>v[lang==='ar'?0:1]||v[0]||'',toggleLang:()=>setLang(v=>v==='ar'?'en':'ar'),toggleTheme:()=>setTheme(v=>v==='dark'?'light':'dark'),favorites,toggle:(g,id)=>setFavorites(v=>({...v,[g]:v[g].includes(id)?v[g].filter(x=>x!==id):[...v[g],id]})),comparisons,saveComparison:ids=>setComparisons(v=>v.some(x=>[...x.ids].sort().join('|')===[...ids].sort().join('|'))?v:[{ids:[...ids],date:new Date().toISOString().slice(0,10)},...v].slice(0,30)),removeComparison:i=>setComparisons(v=>v.filter((_,n)=>n!==i))}}>{children}</Context.Provider>}
+export function useHub(){const v=useContext(Context);if(!v)throw Error('Missing HubProvider');return v}
