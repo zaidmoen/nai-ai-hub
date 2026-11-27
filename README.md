@@ -25,6 +25,14 @@ Press `/` to focus search, `Enter` to move to results, and `Escape` to close a d
 
 Open `prompts.html` from the main navigation or the homepage. The studio includes 22 original English prompt templates with Arabic and English browsing labels across 7 technical and academic fields. Search and filter prompts, save favorites locally, customize project context, stack, goals and constraints, and edit or copy the final text. No accounts, AI API calls, or backend are required. Prompt content is in `prompts-data.js`; the editor does not upload or persist the entered project details.
 
+## Skills Hub and MCP Hub
+
+Open `skills.html` to browse 8 original NAI instruction-only agent skills. Each skill has a downloadable `SKILL.md` in `resources/skills/<name>/` with valid name and description frontmatter. The detail dialog explains project-local installation for Codex and Claude Code. Skills are reviewed by the user before installation and are not automatically executed.
+
+Open `mcp.html` for 6 curated server setup guides with provider documentation and example commands for Codex CLI and Claude Code. GitHub starts with the documented read-only endpoint and Supabase uses a project-scoped read-only URL template. No credentials are collected and no server is automatically installed or connected. Check provider requirements, permissions, and the installed client's syntax before running any command. Local npm examples require a compatible environment and should be reviewed and version-pinned for regular use. Directory sources were checked on 2026-11-27; connection and installation were not tested.
+
+Both hubs share bilingual navigation, search, category filters, saved items in localStorage, dark/light settings, and responsive layouts.
+
 ## Frontend performance
 
 The current homepage uses a local WebGL filament scene and an SVG fallback. Rendering is visibility-aware and respects reduced motion. Prompt Studio has no GPU renderer or external runtime dependencies.
