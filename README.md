@@ -22,6 +22,8 @@ Browser captures of both routes at 1920×1080, 1440×900, 1280×800, and 390×84
 
 ## Architecture
 
+Skills Hub now uses a cinematic hero, twenty illustrated skill cards, category and source filters, search, saved resources, and a selected-skill inspector. Existing skill IDs, downloads, copy actions, upstream links, and favorites remain available. Its 21 local WebP assets total approximately 393 KB. Card art was generated as a coherent 4×5 atlas of separate objects (frontend window, motion ribbon, backend servers, ML graph, review magnifier, debugging bug, deployment rocket, research book, fabric, crystal I, UI loop, design sculpture, React atom, blueprint, motion curve, agent cubes, test check, creation tools, skill library, and folded sculpture), then exported into individual files. The hero prompt describes three levitating glass slabs with code, neural, and architecture motifs over a violet island. No course durations, lesson counts, verification badges, or video playback are fabricated. Browser captures at 1672, 1280, and 390 pixels are in `docs/visual-qa`; selection, search, category filters, favorites, source/setup dialog, and all 20 card images were checked.
+
 - `src/components/Shell.tsx`: navigation, preferences, and global search
 - `src/pages`: route components
 - `src/data`: typed resource, radar, and roadmap data
