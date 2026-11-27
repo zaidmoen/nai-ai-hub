@@ -32,3 +32,6 @@ The supporting prompt and benchmark cards are sourced from the same local catalo
 
 ## Arena V2
 Compact research dashboard with SVG wave art, consistent model colors, letter marks rather than invented logos, responsive navigation, and task-specific insight cards. All metrics remain in original units. Saved comparisons store model IDs locally. Missing domains are omitted rather than filled with zero. Reference mockup is not an image background.
+
+## Neural Atlas unified workspace
+The generated reference boards inform the visual language, not the implementation or data. Use violet/cyan highlights, restrained luminous geometry, a shared dark surface palette, dense navigation and per-section SVG artwork. Keep the full-width interactive homepage atlas, align Arena and library sidebars, retain light mode, and collapse sidebars on smaller screens. Real catalog counts and locally stored favorites drive summaries. The prompt editor is a template editor, not an inference playground; MCP is a setup directory, not an authenticated connection dashboard.
