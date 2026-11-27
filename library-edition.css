@@ -1,0 +1,35 @@
+/* NAI edition: original ThreeUI book geometry, state machine and transitions retained.
+   Overrides only the presentation of the separately adapted document. */
+:root{--ink:#101326;--ink-deep:#090d1d;--ink-soft:#1b2440;--pink:#d1c2ff;--pink-bright:#e4deff;--text:#eef0ff;--muted:#bec9e3;--periwinkle:#aab7fa;--sage:#7b9ed1;--paper:#e1e8ff;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+.stage{background:radial-gradient(ellipse at 50% 58%,#37305f55,transparent 65%),linear-gradient(160deg,#17213d,#0b1023 74%);min-height:100svh}
+.stage::after{opacity:.065}.hero-word{font-size:clamp(100px,19vw,325px);top:10vh;letter-spacing:-.085em;font-weight:500}
+.book-card[hidden]{display:none!important}
+.book-card[data-slot="0"]{--x:23.2%;--y:37%;--w:min(25vw,340px,45vh);--r:-8deg;--yaw:-7deg;z-index:1}
+.book-card[data-slot="1"]{--x:50%;--y:30%;--w:min(28vw,385px,47vh);--r:.8deg;--yaw:-3deg;z-index:3}
+.book-card[data-slot="2"]{--x:77%;--y:38%;--w:min(25vw,340px,45vh);--r:8deg;--yaw:7deg;z-index:2}
+[data-shelf="2"] .book-card[data-slot="0"]{--x:50%;--y:30%;--w:min(28vw,385px,47vh);--r:-3deg;--yaw:-4deg}
+.front-cover{background-image:linear-gradient(155deg,#ffffff18,transparent 38%,#03071243),linear-gradient(90deg,#0a0e2633,transparent 12%);color:var(--cover-ink);border-color:#eef1ff40}
+.nai-cover-art{position:absolute;inset:25% 5% 9%;width:90%;height:66%;color:var(--cover-ink);filter:drop-shadow(0 0 9px #b6b1fa45)}
+.cover-copy{color:var(--cover-ink);text-shadow:none;inset:7% 8% 7%}
+.cover-title{font-size:clamp(20px,3vw,42px);line-height:1.03;font-weight:500;overflow-wrap:normal}
+.cover-subtitle{font-size:clamp(10px,1.1vw,15px);line-height:1.2}
+.cover-footer{font-family:"Segoe UI",Tahoma,sans-serif;letter-spacing:0;font-size:clamp(8px,1vw,12px)}
+.cover-kicker{letter-spacing:.12em}.book-shadow{background:#000a}
+.open-badge{background:#e1e8ff;color:#17213d}
+.shelf-controls{position:absolute;z-index:18;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:5px;padding:5px;border:1px solid #8995d04a;background:#11182feb;border-radius:99px;white-space:nowrap;box-shadow:0 10px 30px #0004}
+.shelf-controls button{cursor:pointer;border:1px solid transparent;border-radius:99px;background:transparent;color:#c3cbea;min-height:38px;padding:8px 16px;font:600 12px/1.2 "Segoe UI",sans-serif}
+.shelf-controls button[aria-pressed=true]{background:#b4baff;color:#151d36}
+.shelf-controls button:focus-visible{outline:2px solid white;outline-offset:2px}
+[data-mode=detail] .shelf-controls{visibility:hidden;pointer-events:none}
+.detail-title{font-size:clamp(42px,4.7vw,76px);font-weight:500}
+.detail-description{font-size:clamp(14px,1.28vw,17px)}
+.doc-step-copy strong,.prompt-block code{color:#e4e8ff}.doc-section{border-color:#a9b8e735}
+.prompt-block,.action-rail{background:#222b4a}.pill{background:#aab7fa;color:#171f36}.pill.icon-only{background:#3d4c80;color:#eef0ff}
+.review-source,.year{color:#b9c3e4}.stars .dim{color:#63719a}.menu-layer{background:#0c1125f7}
+.icon-button,.ticket-button{background:#e1e8ff;color:#17213d}.toast{background:#1b2440;color:#fff}
+.close-button{background:#1a2240;color:#e1e8ff}
+.blossom{filter:hue-rotate(225deg);opacity:.62}
+@media(max-width:900px){.hero-word{top:16vh;font-size:26vw}.book-card[data-slot="0"]{--x:19%;--y:40%;--w:min(43vw,300px,43vh)}.book-card[data-slot="1"]{--x:50%;--y:34%;--w:min(48vw,330px,45vh)}.book-card[data-slot="2"]{--x:81%;--y:42%;--w:min(43vw,300px,43vh)}[data-shelf="2"] .book-card[data-slot="0"]{--x:50%;--y:32%;--w:min(54vw,340px,45vh)}.cover-title{font-size:clamp(19px,4.5vw,38px)}.shelf-controls{bottom:16px}}
+@media(max-width:560px){.hero-word{top:17vh;font-size:30vw}.book-card[data-slot="0"]{--x:10%;--y:39%;--w:min(55vw,38vh)}.book-card[data-slot="1"]{--x:50%;--y:34%;--w:min(62vw,43vh)}.book-card[data-slot="2"]{--x:90%;--y:40%;--w:min(55vw,38vh)}[data-shelf="2"] .book-card[data-slot="0"]{--x:50%;--y:31%;--w:min(65vw,43vh)}.cover-title{font-size:clamp(18px,5.2vw,28px)}.shelf-controls button{padding:8px 10px;font-size:11px}.shelf-controls{max-width:calc(100% - 16px)}}
+@media(max-height:520px) and (min-width:901px){.hero-word{font-size:20vh}.topbar{padding:12px 24px}.shelf-controls{bottom:8px}.detail-panel{top:15%}.detail-scroll{max-height:calc(100svh - 220px)}}
+@media(prefers-reduced-motion:reduce){.blossom-field{display:none}.book-card{will-change:auto}}

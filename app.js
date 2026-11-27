@@ -42,6 +42,9 @@ const categoryPaths={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x
 
 // Interaction labels are localized alongside the original catalog copy.
 Object.assign(dict, {
+  libraryTitle: ['مكتبة الذكاء التفاعلية', 'The Intelligence Library'],
+  libraryDesc: ['سبعة مجلدات معرفية تفتح لك عالم أدوات الذكاء الاصطناعي.', 'Seven interactive volumes for exploring AI, one collection at a time.'],
+  libraryOpen: ['افتح المكتبة', 'Enter the library'],
   skip: ['انتقل إلى الأدوات', 'Skip to tools'],
   sortLabel: ['ترتيب الأدوات', 'Sort tools'],
   reset: ['مسح الفلاتر', 'Clear filters'],
@@ -77,7 +80,8 @@ const storedFavorites = get('nai-favs', []);
 const fav = new Set(Array.isArray(storedFavorites)
   ? storedFavorites.filter(id => Number.isInteger(id) && tools[id]) : []);
 const selection = new Set();
-let cat = 'all';
+const requestedCategory = new URLSearchParams(location.search).get('category');
+let cat = requestedCategory && Object.prototype.hasOwnProperty.call(cats, requestedCategory) ? requestedCategory : 'all';
 let onlyFav = false;
 let query = '';
 let renderFrame = 0;
