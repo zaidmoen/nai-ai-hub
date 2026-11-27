@@ -24,3 +24,6 @@ The main experience no longer exposes the book/library or Ashen Press experiment
 
 ## Atlas experience
 Design intent: a compact editorial knowledge platform, not a collection of unrelated effects. The graph is a CSS/SVG navigation map with five real destinations and live catalog counts. The same navigation, command search, spacing and dark/light tokens apply across active pages. Motion is limited to lightweight line flow and interaction feedback and respects reduced motion. No new runtime dependencies. Old visual experiments remain archived but are not linked from active pages.
+
+## Neural Atlas
+The homepage uses six real navigation nodes around a central NAI orb, SVG radial paths, native Canvas 2D particle terrain and a synthetic rotating dotted sphere. The HTML links and CSS sphere remain available without Canvas. The preview changes on pointer hover and keyboard focus. All counts come from the existing catalogs and validated local favorite IDs. The globe is abstract rather than geographic. Motion is paused offscreen and when hidden and is disabled for reduced motion. Chose native Canvas/SVG/CSS over new Three.js/GSAP dependencies to preserve the static site and improve progressive fallback. No generated screenshot is used as the interface. Browser visual verification remains outstanding.

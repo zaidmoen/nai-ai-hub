@@ -74,3 +74,6 @@ Skills Hub includes 20 entries (12 source-linked external projects and 8 downloa
 
 ## NAI Atlas experience
 The homepage now presents five functional resource portals in a single lightweight knowledge map instead of unrelated visual sections. The old sidebar task finder was removed; category filtering and tool favorites remain. All six active pages share a Developer Hub menu and a keyboard-accessible global search (Ctrl/Cmd+K or /) over the same four local catalogs. Results open the exact resource on its original page via a resource query parameter. `workspace.html` reads and removes the existing local favorite records for tools, prompts, skills and MCP; no account or backend is used. Archived ThreeUI files remain in the repository and are not loaded by the main experience. Browser/device verification remains required.
+
+## Neural Atlas
+The homepage features a six-destination interactive radial atlas including My Workspace. Native SVG connectors and a lightweight Canvas 2D particle field provide the visual scene, with CSS fallbacks and reduced-motion support. Hover or focus a node for a description and follow the link to its actual page. Catalog counts remain data-driven and workspace counts use the existing local favorites. No build or CDN is required. See `neural-atlas.css` and `neural-atlas.js`.
