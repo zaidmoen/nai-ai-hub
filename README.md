@@ -79,3 +79,6 @@ The homepage now presents five functional resource portals in a single lightweig
 The homepage features a six-destination interactive radial atlas including My Workspace. Native SVG connectors and a lightweight Canvas 2D particle field provide the visual scene, with CSS fallbacks and reduced-motion support. Hover or focus a node for a description and follow the link to its actual page. Catalog counts remain data-driven and workspace counts use the existing local favorites. No build or CDN is required. See `neural-atlas.css` and `neural-atlas.js`.
 
 Homepage preview cards use the existing prompt library and dated Model Arena dataset. Benchmark values are not a live feed.
+
+## Model Arena V2
+Reference-inspired dashboard with desktop sidebar, compare, leaderboard, benchmark explorer, model explorer, locally saved comparison selections and CSV export. Charts use the unchanged dated arena-data.js snapshot; the domain radar includes complete finance, strategy, legal and medical profiles only. No live inference, fabricated coding/math values or token-price conversion. CSV includes source snapshot date and index version. No external runtime or build.
