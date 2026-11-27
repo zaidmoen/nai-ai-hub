@@ -1631,7 +1631,7 @@
   "data": {
     "title": "Data & Math",
     "year": "NAI",
-    "description": "Make patterns visible. Explore a curated collection for university students. Examples include WolframAlpha · Julius AI.",
+    "description": "Make patterns visible. Explore a curated collection for university students. Examples include Wolfram Alpha · Google Colab.",
     "steps": [
       {
         "title": "Choose a real task",
@@ -1676,6 +1676,29 @@
       let savedCollections = new Set();
       try { const saved = JSON.parse(localStorage.getItem("nai-library-saved") || "[]"); if (Array.isArray(saved)) savedCollections = new Set(saved.filter(id => books[id])); } catch {}
       const shelfButtons = [...document.querySelectorAll("[data-shelf-to]")];
+      let libraryArabic = true;
+      try { libraryArabic = JSON.parse(localStorage.getItem("nai-lang")) !== "en"; } catch {}
+      const localized = (ar,en) => libraryArabic ? ar : en;
+      if (libraryArabic) {
+        document.documentElement.lang = "ar";
+        detailPanel.dir = "rtl";
+        const copy = {
+          assist:["المساعدات الذكية","افهم المفاهيم الصعبة ونظّم أفكارك مع أدوات مثل ChatGPT وClaude وGemini.","اشرح لي مفهومًا صعبًا بأمثلة، ثم اختبر فهمي دون إظهار الإجابات."],
+          research:["البحث والدراسة","استكشف المصادر ونظّم المراجع مع NotebookLM وPerplexity.","قارن هذه المصادر وحدد الادعاءات التي يجب التحقق منها في المراجع الأصلية."],
+          code:["البرمجة","تعلّم الخوارزميات وراجع الكود مع Cursor وGitHub Copilot.","اشرح المنطق وراء هذه الخوارزمية واقترح حالات اختبار دون كتابة الحل كاملًا."],
+          design:["التصميم والعروض","حوّل أفكار مشاريعك إلى تصاميم وعروض باستخدام Canva وAdobe Firefly.","اقترح ثلاثة اتجاهات بصرية لمشروعي واشرح ترتيب المعلومات واختيار الألوان."],
+          writing:["الكتابة والترجمة","طوّر كتابتك وراجع الترجمة باستخدام Grammarly وDeepL.","راجع مسودتي وحدد الحجج غير الواضحة مع الحفاظ على أسلوبي الخاص."],
+          media:["الصوت والفيديو","ابتكر محتوى تعليميًا سمعيًا وبصريًا مع Runway وElevenLabs.","ساعدني في تخطيط فيديو تعليمي قصير ببداية واضحة وشرح وخاتمة."],
+          data:["البيانات والرياضيات","حلّل البيانات وتحقق من الحسابات باستخدام Wolfram Alpha وGoogle Colab.","اشرح افتراضات وخطوات هذا الحساب وبيّن طريقة التحقق من النتيجة."]
+        };
+        for (const [id,[title,description,prompt]] of Object.entries(copy)) Object.assign(books[id],{title,description,prompt,steps:[{title:"حدّد المهمة",body:"ابدأ بسؤال أو مشروع تريد فهمه."},{title:"استكشف الأدوات",body:"افتح دليل الأدوات وقارن الاستخدامات قبل الاختيار."},{title:"قدّم سياقًا واضحًا",body:"اشرح الهدف والقيود دون مشاركة معلومات شخصية أو سرية."},{title:"تحقق بنفسك",body:"راجع المصادر والحسابات والتزم بتعليمات النزاهة الأكاديمية."}],review:"استخدم الذكاء الاصطناعي شريكًا للتعلم، وليس بديلًا عن تفكيرك. تحقق من المخرجات قبل التسليم."});
+        const labels={collectionButton:"كل الأدوات",gettingStartedLabel:"كيف تبدأ",firstPromptLabel:"جرّب هذا الطلب",reviewLabel:"قبل التسليم",copyPrompt:"نسخ الطلب",browseTools:"عرض الأدوات",menuIndex:"دليل الأدوات"};
+        for(const [id,value] of Object.entries(labels)) document.getElementById(id).textContent=value;
+        shelfButtons.forEach((button,i)=>button.textContent=["01 — تعلّم","02 — ابتكر","03 — حلّل"][i]);
+        cards.forEach(card=>{card.setAttribute("aria-label","افتح "+books[card.dataset.book].title);card.querySelector(".open-badge").textContent="استكشف";});
+        document.getElementById("saveButton").setAttribute("aria-label","حفظ المجموعة");
+      }
+      let closingBook = false;
       function openDirectory(category = "") {
         const target = new URL("../index.html", location.href);
         if (category) target.searchParams.set("category", category);
@@ -1685,7 +1708,7 @@
         else location.assign(target.href);
       }
       shelfButtons.forEach(button => button.addEventListener("click", () => {
-        if (body.dataset.mode !== "gallery") return;
+        if (body.dataset.mode !== "gallery" || closingBook) return;
         const shelf = button.dataset.shelfTo;
         cards.forEach(card => { card.hidden = card.dataset.shelf !== shelf; });
         body.dataset.shelf = shelf;
@@ -1696,8 +1719,8 @@
       document.getElementById("browseTools").addEventListener("click", () => { if(selectedCard) openDirectory(selectedCard.dataset.book); });
       document.getElementById("copyPrompt").addEventListener("click", async () => {
         if (!selectedCard) return;
-        try { await navigator.clipboard.writeText(detailPrompt.textContent); showToast("Prompt copied."); }
-        catch { const range=document.createRange(); range.selectNodeContents(detailPrompt); getSelection()?.removeAllRanges(); getSelection()?.addRange(range); detailPrompt.scrollIntoView({block:"nearest"}); showToast("Prompt selected — copy it manually."); }
+        try { await navigator.clipboard.writeText(detailPrompt.textContent); showToast(localized("تم نسخ الطلب","Prompt copied.")); }
+        catch { const range=document.createRange(); range.selectNodeContents(detailPrompt); getSelection()?.removeAllRanges(); getSelection()?.addRange(range); detailPrompt.scrollIntoView({block:"nearest"}); showToast(localized("تم تحديد الطلب؛ انسخه يدويًا","Prompt selected — copy it manually.")); }
       });
       let selectedCard = null;
       let toastTimer = 0;
@@ -1781,7 +1804,7 @@
       }
 
       function selectBook(card) {
-        if (body.dataset.mode === "detail") return;
+        if (body.dataset.mode === "detail" || closingBook) return;
         const data = books[card.dataset.book];
         if (!data) return;
 
@@ -1822,7 +1845,8 @@
       }
 
       function closeDetail() {
-        if (body.dataset.mode !== "detail") return;
+        if (body.dataset.mode !== "detail" || closingBook) return;
+        closingBook = true;
         body.dataset.mode = "gallery";
         syncCoverMotion();
         detailPanel.setAttribute("aria-hidden", "true");
@@ -1836,6 +1860,7 @@
           cards.forEach((card) => card.classList.remove("selected"));
           cards.forEach((card) => { card.tabIndex = 0; });
           selectedCard = null;
+          closingBook = false;
           lastCard?.focus({ preventScroll: true });
           if (window.innerWidth > 900) stage.scrollTop = 0;
         }, reducedMotion.matches ? 0 : 700);
@@ -1900,7 +1925,7 @@
         if(saved) savedCollections.add(id); else savedCollections.delete(id);
         try { localStorage.setItem("nai-library-saved",JSON.stringify([...savedCollections])); } catch {}
         saveButton.setAttribute("aria-pressed", String(saved));
-        showToast(saved ? "Collection saved." : "Collection removed.");
+        showToast(saved ? localized("تم حفظ المجموعة","Collection saved.") : localized("تمت إزالة المجموعة","Collection removed."));
       });
 
       document.addEventListener("click", (event) => {
