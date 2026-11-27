@@ -23,7 +23,7 @@
    const r=active.parentElement.getBoundingClientRect();
    const x=Math.max(0,Math.min(1,(pointer.x-r.left)/Math.max(1,r.width)));
    const y=Math.max(0,Math.min(1,(pointer.y-r.top)/Math.max(1,r.height)));
-   get(active).target=[(0.5-y)*11,(x-0.5)*11,-5,x*100,y*100,1,(x-.5)*16,(y-.5)*12];
+   get(active).target=[(0.5-y)*4,(x-0.5)*4,-3,x*100,y*100,1,(x-.5)*16,(y-.5)*12];
   }
   let needsFrame=false;
   for(const [surface,s] of states){

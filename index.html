@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="NAI AI Hub — A curated AI directory for students.">
-  <meta name="theme-color" content="#090e22">
+  <meta name="theme-color" content="#0c0d12">
   <title>NAI AI Hub — The student AI index</title>
   <script>
     (() => {
@@ -23,11 +23,11 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="observatory.css">
   <link rel="stylesheet" href="prism.css">
-  <link rel="stylesheet" href="library-entry.css">
+  <link rel="stylesheet" href="cinema.css">
   <script src="motion.js" defer></script>
   <script src="app.js" defer></script>
   <script src="card-motion.js" defer></script>
-  <script type="module" src="prism-hero.js"></script>
+  <script src="cinema.js" defer></script>
 </head>
 <body>
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -71,13 +71,9 @@
 
   <main id="top" class="wrap">
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="prism-visual" aria-hidden="true">
-        <img class="prism-fallback" src="assets/prism-orbit.svg" width="640" height="460" alt="">
-        <canvas class="prism-canvas"></canvas>
-        <span class="prism-coordinate">NAI / FIELD 01</span>
-      </div>
-      <div class="hero-copy">
-        <h1 id="heroTitle" data-i="hero">ذكاء بلا حدود.<br>ابدأ من هنا.</h1>
+      <div class="cinema-stage" aria-hidden="true"><div class="cinema-art"><img class="cinema-fallback" src="assets/intelligence-field.svg" width="800" height="800" alt=""><canvas class="cinema-canvas"></canvas></div><div class="cinema-coord"><span>NAI / INTELLIGENCE FIELD</span><span>01 — 07</span></div></div>
+      <div class="hero-copy"><div class="cinema-kicker"><span class="signal-dot" aria-hidden="true"></span><span data-i="cinemaKicker">دليل الذكاء الاصطناعي للطلاب</span></div>
+        <h1 id="heroTitle" data-i="hero">فضول بلا حدود.<br>وإمكانات أكبر.</h1>
         <p data-i="intro">اكتشف الأدوات التي تساعدك على التعلّم والبحث والبرمجة والإبداع. دليلك من جمعية ناي للذكاء الاصطناعي.</p>
         <div class="hero-command"><form class="search hero-search" id="heroSearchForm" role="search" aria-label="البحث في الأدوات">
           <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
@@ -87,17 +83,23 @@
           <button class="search-submit" id="heroSearch" type="submit" aria-label="عرض نتائج البحث"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
         </form>
         <div class="command-results" id="heroSuggestions" hidden></div></div>
-        <div class="metrics" id="metrics" role="group" aria-label="نظرة على الدليل">
+        <div class="cinema-links"><a class="cinema-cta" href="#directory"><span data-i="cinemaExplore">استكشف الأدوات</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a><a class="cinema-secondary" href="#fields" data-i="cinemaFields">اختر مجالك</a></div><div class="metrics" id="metrics" role="group" aria-label="نظرة على الدليل">
           <span class="metric"><b id="total">30</b><span data-i="tools">أداة مختارة</span></span>
           <span class="metric"><b id="catTotal">7</b><span data-i="categories">مجالات استخدام</span></span>
         </div>
       </div>
     </section>
 
-    <section class="library-entry" aria-labelledby="libraryEntryTitle"><div class="library-entry-art" aria-hidden="true"><span></span><span></span><span></span></div><div class="library-entry-copy"><h2 id="libraryEntryTitle" data-i="libraryTitle">مكتبة الذكاء التفاعلية</h2><p data-i="libraryDesc">سبعة مجلدات معرفية تفتح لك عالم أدوات الذكاء الاصطناعي.</p><a class="library-entry-link" href="library.html"><span data-i="libraryOpen">افتح المكتبة</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a><a class="library-entry-link library-entry-secondary" href="ashen-press.html"><span data-i="ashenOpen">استكشف معرض 3D</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></div></section>
+    <section class="fields" id="fields" aria-labelledby="fieldsTitle"><div class="fields-head"><div><p class="chapter-label">01 / EXPLORE</p><h2 id="fieldsTitle" data-i="fieldsTitle">لكل فكرة، أداة.</h2><p data-i="fieldsDesc">ابدأ بالمجال الذي يناسب هدفك، واكتشف الأدوات المختارة له.</p></div><span class="fields-count">07 <span data-i="fieldsLabel">مجالات</span></span></div><div class="fields-grid"><button class="field-card" type="button" data-field="assist" style="--field-color:#bca5ff" aria-controls="grid"><span class="field-num">01 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><ellipse cx='44' cy='32' rx='28' ry='12' transform='rotate(-35 44 32)'/><ellipse cx='44' cy='32' rx='28' ry='12' transform='rotate(35 44 32)'/><circle cx='44' cy='32' r='5' fill='currentColor'/></svg><span class="field-name" data-i="field_assist">المساعدات الذكية</span><span class="field-tag" data-i="fieldTag_assist">افهم بعمق</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="research" style="--field-color:#8ccaf1" aria-controls="grid"><span class="field-num">02 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx='39' cy='28' r='19'/><circle cx='39' cy='28' r='11' stroke-dasharray='2 4'/><path d='m53 42 20 20M39 6v44M17 28h44'/></svg><span class="field-name" data-i="field_research">البحث والدراسة</span><span class="field-tag" data-i="fieldTag_research">ابحث عن المصادر</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="code" style="--field-color:#9de1d2" aria-controls="grid"><span class="field-num">03 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d='m31 13-21 19 21 19m26-38 21 19-21 19m-5-44-16 50'/></svg><span class="field-name" data-i="field_code">البرمجة</span><span class="field-tag" data-i="fieldTag_code">طوّر فكرتك</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="design" style="--field-color:#d5a9f4" aria-controls="grid"><span class="field-num">04 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d='m44 4 36 28-36 28L8 32zM44 4v56M8 32h72M26 32l18-14 18 14-18 14z'/></svg><span class="field-name" data-i="field_design">التصميم والعروض</span><span class="field-tag" data-i="fieldTag_design">حوّل أفكارك لتصاميم</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="writing" style="--field-color:#e8c5a4" aria-controls="grid"><span class="field-num">05 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d='M23 5h33l12 12v42H23zM56 5v12h12M32 27h27M32 36h27M32 45h18'/></svg><span class="field-name" data-i="field_writing">الكتابة والترجمة</span><span class="field-tag" data-i="fieldTag_writing">عبّر عن أفكارك</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="media" style="--field-color:#e9a8bb" aria-controls="grid"><span class="field-num">06 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x='9' y='12' width='70' height='40' rx='7'/><path d='m37 22 20 10-20 10zM12 58h64'/></svg><span class="field-name" data-i="field_media">الصوت والفيديو</span><span class="field-tag" data-i="fieldTag_media">اصنع محتوى</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+<button class="field-card" type="button" data-field="data" style="--field-color:#a7b9ff" aria-controls="grid"><span class="field-num">07 / 07</span><svg class="field-art" viewBox="0 0 88 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d='M10 55h68M13 55V8M24 48V34m13 14V21m13 27V30m13 18V13m13 35V6'/></svg><span class="field-name" data-i="field_data">البيانات والرياضيات</span><span class="field-tag" data-i="fieldTag_data">اكتشف الأنماط</span><svg class="icon field-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></button></div></section>
     <section id="directory" class="directory" aria-labelledby="directoryTitle" tabindex="-1">
       <div class="section-title">
-        <div><h2 id="directoryTitle" data-i="directory">استكشف الأدوات</h2><p data-i="directoryDesc">اختيارات عملية لمختلف التخصصات والاهتمامات.</p></div>
+        <div><p class="chapter-label">02 / DISCOVER</p><h2 id="directoryTitle" data-i="directory">استكشف الأدوات</h2><p data-i="directoryDesc">اختيارات عملية لمختلف التخصصات والاهتمامات.</p></div>
 
       </div>
       <div class="directory-layout">
@@ -128,7 +130,7 @@
 
     <section class="guide" id="guide" aria-labelledby="guideTitle">
       <div class="guide-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-shield"/></svg></div>
-      <div><h2 id="guideTitle" data-i="responsible">استخدم الذكاء الاصطناعي بمسؤولية</h2><p data-i="responsibleDesc">راجع المعلومات والمصادر، لا ترفع بيانات شخصية أو سرية، والتزم بتعليمات مدرس المساق. استخدم الأدوات لتفهم وتتعلم، مش لتسلّم شغل ما بتقدر تشرحه.</p><p class="notice" data-i="plans">قد تتغير الخطط والأسعار والتوفر الجغرافي. راجع الموقع الرسمي لكل أداة.</p></div>
+      <div><p class="chapter-label">03 / LEARN</p><h2 id="guideTitle" data-i="responsible">استخدم الذكاء الاصطناعي بمسؤولية</h2><p data-i="responsibleDesc">راجع المعلومات والمصادر، لا ترفع بيانات شخصية أو سرية، والتزم بتعليمات مدرس المساق. استخدم الأدوات لتفهم وتتعلم، مش لتسلّم شغل ما بتقدر تشرحه.</p><p class="notice" data-i="plans">قد تتغير الخطط والأسعار والتوفر الجغرافي. راجع الموقع الرسمي لكل أداة.</p></div>
     </section>
     <footer>
       <a class="footer-mark" href="#top">NAI<span> / AI HUB</span></a>
