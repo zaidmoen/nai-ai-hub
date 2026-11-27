@@ -1,42 +1,42 @@
 'use strict';
 // Catalog: name, category, official link, Arabic description, English description, Arabic use case, English use case, color.
 const raw=[
-['ChatGPT','assist','https://chatgpt.com/','مساعد عام للشرح والكتابة وتحليل الأفكار وحل المشكلات.','General assistant for explanations, writing and problem-solving.','اشرح مفهومًا صعبًا بأمثلة وأسئلة تدريبية.','Explain a difficult concept with examples and practice questions.','#16816c'],
-['Claude','assist','https://claude.ai/','مساعد للكتابة والتحليل وفهم النصوص الطويلة والبرمجة.','Assistant for writing, analysis, long documents and coding.','راجع مسودة تقرير واطلب نقدًا مفصلًا.','Review a report draft and request detailed feedback.','#b9664e'],
-['Gemini','assist','https://gemini.google.com/','مساعد متعدد الوسائط للأسئلة والتلخيص والأفكار.','Multimodal assistant for questions, summaries and ideas.','حوّل ملاحظات المحاضرة إلى خطة مراجعة.','Turn lecture notes into a revision plan.','#526ac9'],
-['Microsoft Copilot','assist','https://copilot.microsoft.com/','مساعد للبحث والكتابة وتنظيم الأفكار.','Assistant for search, writing and organizing ideas.','أنشئ مخططًا أوليًا لمشروع جماعي.','Draft an outline for a team project.','#4664bd'],
-['DeepSeek','assist','https://www.deepseek.com/','مساعد للنصوص والبرمجة والاستدلال.','Assistant for text, coding and reasoning.','حلّل خطوات مسألة منطقية ثم تحقق منها بنفسك.','Analyze a logic problem and verify the steps yourself.','#4b62b8'],
-['NotebookLM','research','https://notebooklm.google/','مساحة بحث ودراسة ترتكز على المصادر التي تضيفها.','Study and research workspace grounded in sources you add.','استخرج أسئلة مراجعة من ملفات المساق المسموح برفعها.','Generate revision questions from permitted course materials.','#5553b0'],
-['Perplexity','research','https://www.perplexity.ai/','محرك إجابات يساعد في البحث مع روابط للمصادر.','Answer engine for research with source links.','ابحث عن مدخل لموضوع بحث وتحقق من المصادر الأصلية.','Explore a research topic and verify original sources.','#247f87'],
-['Elicit','research','https://elicit.com/','يساعد في العثور على الدراسات وتنظيم نتائجها.','Find research papers and organize their findings.','كوّن جدولًا أوليًا لمراجعة الأدبيات.','Build an initial literature review table.','#7451b3'],
-['Consensus','research','https://consensus.app/','محرك بحث للأسئلة التي يمكن استقصاؤها عبر الأدبيات العلمية.','Search research literature for evidence-based questions.','قارن نتائج الأبحاث حول سؤال علمي محدد.','Compare research findings on a scientific question.','#335a9f'],
-['Scite','research','https://scite.ai/','أداة لاستكشاف سياق الاستشهادات بالأبحاث العلمية.','Explore the citation context of academic papers.','تحقق من كيفية استشهاد الأبحاث بدراسة معينة.','Examine how papers cite a particular study.','#4f7a74'],
-['Connected Papers','research','https://www.connectedpapers.com/','يعرض العلاقات بين الأوراق العلمية في مخطط بصري.','Visualize relationships between academic papers.','اكتشف أوراقًا مرتبطة ببحث أساسي.','Discover papers related to a seed paper.','#6b5fa7'],
-['GitHub Copilot','code','https://github.com/features/copilot','مساعد برمجي لاقتراح الكود وشرحه داخل بيئة التطوير.','Coding assistant for suggestions and explanations in your IDE.','اطلب تفسير دالة وكتابة حالات اختبار لها.','Ask for a function explanation and test cases.','#373641'],
-['Cursor','code','https://cursor.com/','محرر برمجي مدعوم بالذكاء الاصطناعي لفهم المشاريع وتعديلها.','AI-powered code editor for understanding and editing projects.','افهم بنية مشروع برمجي قبل إجراء التعديلات.','Understand a codebase before making edits.','#3e3c57'],
-['Replit','code','https://replit.com/','بيئة برمجة عبر المتصفح مع أدوات مساعدة ذكية.','Browser-based coding environment with AI assistance.','ابنِ نموذجًا أوليًا لتطبيق صغير.','Prototype a small application.','#bc632d'],
-['Google AI Studio','code','https://aistudio.google.com/','بيئة لتجربة نماذج Gemini وتصميم تطبيقات تعتمد عليها.','Experiment with Gemini models and prototype AI applications.','جرّب تعليمات لنموذج قبل دمجه في مشروع.','Experiment with prompts before integrating a model.','#3f71c4'],
-['Hugging Face','code','https://huggingface.co/','منصة للنماذج ومجموعات البيانات والتطبيقات التجريبية.','Hub for models, datasets and interactive demos.','استكشف نموذج تصنيف نصوص مناسب لمشروعك.','Explore a text classification model for your project.','#9a6d1e'],
-['Canva','design','https://www.canva.com/','منصة تصميم تتضمن أدوات ذكية للصور والعروض والمحتوى.','Design platform with AI tools for visuals and presentations.','صمّم بوستر فعالية طلابية.','Design a student event poster.','#6472bd'],
-['Adobe Firefly','design','https://firefly.adobe.com/','أدوات توليد الصور وتعديل المحتوى البصري.','Tools for generating and editing visual content.','أنشئ مفهومًا بصريًا أوليًا لحملة.','Create an initial visual concept for a campaign.','#b74771'],
-['Gamma','design','https://gamma.app/','إنشاء مسودات عروض ومستندات من فكرة أو مخطط.','Generate draft presentations and documents from an outline.','حوّل خطة مشروع إلى مسودة عرض.','Turn a project outline into a presentation draft.','#7455b9'],
-['Ideogram','design','https://ideogram.ai/','توليد الصور والتصاميم التي تتضمن نصوصًا.','Generate images and designs featuring text.','جرّب أفكارًا لملصق بعنوان واضح.','Explore poster ideas with a clear title.','#4d4969'],
-['Midjourney','design','https://www.midjourney.com/','توليد صور إبداعية انطلاقًا من وصف نصي.','Generate creative visuals from text prompts.','استكشف اتجاهات بصرية لهوية مشروع.','Explore visual directions for a project identity.','#77619d'],
-['Grammarly','writing','https://www.grammarly.com/','مساعدة في تحرير النصوص الإنجليزية وتحسين الوضوح.','Improve clarity and edit English writing.','راجع لغة رسالة رسمية أو تقرير.','Review the language of a formal email or report.','#258568'],
-['DeepL','writing','https://www.deepl.com/','أداة ترجمة ومساعدة لغوية.','Translation and language assistance.','ترجم فقرة ثم راجع المصطلحات المتخصصة.','Translate a paragraph and check technical terminology.','#24456a'],
-['QuillBot','writing','https://quillbot.com/','أدوات للتلخيص وإعادة الصياغة والمراجعة اللغوية.','Tools for summarizing, paraphrasing and language review.','حسّن صياغة نص كتبته بنفسك مع توثيق المصادر.','Refine your own writing while citing sources.','#387d58'],
-['Runway','media','https://runwayml.com/','أدوات ذكاء اصطناعي لتوليد الفيديو وتحريره.','AI tools for video generation and editing.','جرّب مشهدًا بصريًا قصيرًا لمشروع إعلامي.','Prototype a short visual scene for a media project.','#42425a'],
-['ElevenLabs','media','https://elevenlabs.io/','توليد الكلام وأدوات صوتية متعددة.','Speech generation and audio tools.','أنشئ تعليقًا صوتيًا تجريبيًا دون تقليد أشخاص بلا إذن.','Create a sample narration without impersonating anyone.','#4a5062'],
-['Descript','media','https://www.descript.com/','تحرير الصوت والفيديو عبر النص وأدوات ذكية.','Text-based audio and video editing with AI features.','حرّر تسجيلًا لمقابلة بموافقة المشاركين.','Edit an interview recording with participant consent.','#5862b4'],
-['Wolfram Alpha','data','https://www.wolframalpha.com/','محرك معرفة حسابية للمسائل الرياضية والعلمية.','Computational knowledge engine for math and science.','تحقق من ناتج مسألة رياضية.','Check the result of a mathematical problem.','#b75740'],
-['Google Colab','data','https://colab.research.google.com/','دفاتر Python سحابية لتعلّم وتحليل البيانات وتجارب الذكاء الاصطناعي.','Cloud Python notebooks for learning, analysis and AI experiments.','جرّب تحليل مجموعة بيانات وتصور النتائج.','Analyze a dataset and visualize results.','#b57832'],
-['DataRobot','data','https://www.datarobot.com/','منصة لبناء نماذج تعلم آلي وإدارة تطبيقات الذكاء الاصطناعي.','Platform for machine learning models and AI applications.','استكشف سير عمل بناء نموذج تنبؤي.','Explore a predictive modeling workflow.','#575ca0']
+["ChatGPT","assist","https://chatgpt.com/","بساعدك تفهم المواضيع الصعبة وترتب أفكارك وتكتب وتراجع شغلك","Get help understanding difficult topics and working through ideas or drafts","اطلب منه يشرحلك فكرة من المحاضرة ويعطيك أمثلة عليها","Ask it to explain something from class and walk you through an example","#16816c"],
+["Claude","assist","https://claude.ai/","مفيد لما بدك تراجع نص طويل أو تحلل فكرة أو تفهم كود","Useful for working through long documents and explaining code","اعطيه مسودة تقريرك وخليه يحكيلك وين ممكن تحسنها","Share a report draft and ask what could be clearer","#b9664e"],
+["Gemini","assist","https://gemini.google.com/","بتقدر تسأله عن النصوص والصور وتستخدمه لتلخيص أفكارك","Ask questions about text and images or get help organizing ideas","خليه يرتبلك ملاحظات المحاضرة على شكل خطة مراجعة","Turn your lecture notes into a study plan","#526ac9"],
+["Microsoft Copilot","assist","https://copilot.microsoft.com/","بساعدك بالبحث والكتابة وترتيب أفكارك قبل ما تبدأ","Get help researching a topic or organizing your thoughts","جرب ترتب معه أفكار مشروع جماعي قبل ما تبلش فيه","Use it to plan a group project before getting started","#4664bd"],
+["DeepSeek","assist","https://www.deepseek.com/","بفيدك بالمسائل المنطقية وفهم الكود والشرح خطوة بخطوة","Work through reasoning problems and get explanations of code","خليه يشرحلك خطوات حل مسألة وحاول تتأكد منها بنفسك","Ask it to explain a solution and check each step yourself","#4b62b8"],
+["NotebookLM","research","https://notebooklm.google/","بتضيف عليه مصادر الدراسة وبساعدك تفهمها وتراجعها","Work with your own study materials and explore what they say","ارفع ملفات المساق المسموح بمشاركتها واطلب أسئلة للمراجعة","Use permitted course materials to make practice questions","#5553b0"],
+["Perplexity","research","https://www.perplexity.ai/","بجاوب على أسئلتك وبعطيك روابط ترجع فيها للمصادر","Find answers to questions with links to sources","ابدأ فيه بحثك وبعدين ارجع للمصادر الأصلية","Get started on a research topic and read the original sources","#247f87"],
+["Elicit","research","https://elicit.com/","بساعدك تلاقي أبحاث علمية وترتب النتائج اللي بتحتاجها","Find academic papers and organize the findings you need","استخدمه لترتيب الدراسات السابقة لمشروعك","Use it to organize papers for your literature review","#7451b3"],
+["Consensus","research","https://consensus.app/","بساعدك تعرف شو بتحكي الدراسات العلمية عن سؤال معين","See what published research says about a question","قارن نتائج أكثر من دراسة عن نفس الموضوع","Compare findings from different papers on the same topic","#335a9f"],
+["Scite","research","https://scite.ai/","بوضحلك كيف الأبحاث الثانية استشهدت بدراسة معينة","See how other papers have cited a particular study","راجع إذا الدراسات الثانية بتدعم نتائج البحث أو بتناقشها","Check whether other papers support or challenge a finding","#4f7a74"],
+["Connected Papers","research","https://www.connectedpapers.com/","بعرضلك الأبحاث المرتبطة ببعض بطريقة بصرية","See how related research papers connect","ابدأ من ورقة علمية واكتشف أبحاث قريبة من موضوعها","Start with one paper and find related work","#6b5fa7"],
+["GitHub Copilot","code","https://github.com/features/copilot","بساعدك تكتب الكود وتفهمه من داخل محرر البرمجة","Get code suggestions and explanations inside your editor","اطلب منه يشرحلك دالة ويقترح حالات اختبار إلها","Ask for an explanation of a function and some test cases","#373641"],
+["Cursor","code","https://cursor.com/","محرر كود بساعدك تفهم مشروعك وتعدل عليه","A code editor that helps you understand and edit your project","خليه يشرحلك بنية المشروع قبل ما تغير أي ملف","Explore how a project is organized before editing files","#3e3c57"],
+["Replit","code","https://replit.com/","بيئة برمجة بتشتغل من المتصفح وفيها مساعد ذكي","Write and run code in your browser with AI assistance","جرب فكرتك وابن نسخة بسيطة من تطبيقك","Build a small prototype to try out an idea","#bc632d"],
+["Google AI Studio","code","https://aistudio.google.com/","بتقدر تجرب نماذج Gemini وتبني عليها أفكار لتطبيقاتك","Try Gemini models and explore how to use them in an app","جرب أكثر من طلب للنموذج قبل ما تربطه بمشروعك","Try different prompts before connecting a model to your project","#3f71c4"],
+["Hugging Face","code","https://huggingface.co/","مكان بتلاقي فيه نماذج جاهزة ومجموعات بيانات وتجارب","Find AI models and datasets alongside interactive demos","دور على نموذج لتصنيف النصوص يناسب مشروعك","Find a text classification model for your project","#9a6d1e"],
+["Canva","design","https://www.canva.com/","بساعدك تصمم بوسترات وعروض ومحتوى بصري بسهولة","Create posters and presentations with helpful design tools","صمم بوستر لفعالية بالجامعة","Design a poster for a university event","#6472bd"],
+["Adobe Firefly","design","https://firefly.adobe.com/","بتقدر تولد صور من وصف وتعدل على المحتوى البصري","Generate images from a description and edit visuals","جرب فكرة بصرية لحملة طلابية","Explore a visual idea for a student campaign","#b74771"],
+["Gamma","design","https://gamma.app/","بحول أفكارك ومخططاتك لمسودات عروض ومستندات","Turn an outline into a draft presentation or document","جهز مسودة عرض من خطة مشروعك","Start a presentation from your project outline","#7455b9"],
+["Ideogram","design","https://ideogram.ai/","مفيد لتوليد صور وتصاميم فيها نصوص واضحة","Generate images and designs that include text","جرب أكثر من تصميم لبوستر فيه عنوان","Try a few poster designs with a title","#4d4969"],
+["Midjourney","design","https://www.midjourney.com/","بولد صور إبداعية بناء على الوصف اللي بتكتبه","Create imaginative images from your own descriptions","جرب أفكار بصرية مختلفة لهوية مشروعك","Explore visual directions for your project","#77619d"],
+["Grammarly","writing","https://www.grammarly.com/","بساعدك تراجع كتابتك بالإنجليزي وتوضح المعنى","Make your English writing clearer and easier to read","راجع رسالة رسمية أو تقرير قبل ما تبعته","Review an email or report before sending it","#258568"],
+["DeepL","writing","https://www.deepl.com/","مفيد لترجمة النصوص ومراجعة صياغتها","Translate text and get help with wording","ترجم فقرة وراجع المصطلحات حسب تخصصك","Translate a paragraph and check the terminology","#24456a"],
+["QuillBot","writing","https://quillbot.com/","بساعدك تلخص النصوص وتعيد صياغة شغلك وتراجعه","Summarize text and get help refining your writing","حسن صياغة نص كتبته بنفسك مع الحفاظ على توثيق المصادر","Refine your own draft and keep the sources credited","#387d58"],
+["Runway","media","https://runwayml.com/","بتقدر تولد فيديوهات وتعدل عليها بأدوات الذكاء الاصطناعي","Generate and edit videos with AI tools","جرب مشهد قصير لمشروع إعلامي","Try a short scene for a media project","#42425a"],
+["ElevenLabs","media","https://elevenlabs.io/","بساعدك تولد كلام مسموع وتشتغل على الصوت","Generate speech and work with audio","جرب تعليق صوتي من غير ما تقلد صوت حدا بدون إذنه","Try a narration without copying someone's voice without permission","#4a5062"],
+["Descript","media","https://www.descript.com/","بتقدر تعدل تسجيلات الصوت والفيديو من خلال النص","Edit audio and video by working with the transcript","عدل تسجيل مقابلة بعد ما تاخد موافقة المشاركين","Edit an interview recording with everyone's permission","#5862b4"],
+["Wolfram Alpha","data","https://www.wolframalpha.com/","بساعدك تحسب وتحل مسائل بالرياضيات والعلوم","Work through calculations and math or science problems","تأكد من ناتج مسألة حليتها بنفسك","Check the answer to a problem you solved","#b75740"],
+["Google Colab","data","https://colab.research.google.com/","بتقدر تكتب Python من المتصفح وتجرب تحليل البيانات ونماذج الذكاء الاصطناعي","Run Python in your browser for data analysis and AI experiments","حلل مجموعة بيانات واعرض النتائج برسومات","Analyze a dataset and visualize the results","#b57832"],
+["DataRobot","data","https://www.datarobot.com/","منصة بتساعدك تبني نماذج تعلم آلي وتدير تطبيقات الذكاء الاصطناعي","Build machine learning models and manage AI applications","استكشف خطوات بناء نموذج للتنبؤ","Explore the steps involved in building a prediction model","#575ca0"]
 ];
 const tools=raw.map((r,id)=>({id,name:r[0],cat:r[1],url:r[2],ar:r[3],en:r[4],useAr:r[5],useEn:r[6],color:r[7]}));
 const cats={all:['الكل','All'],assist:['المساعدات الذكية','AI Assistants'],research:['البحث والدراسة','Research & Study'],code:['البرمجة','Development'],design:['التصميم والعروض','Design & Slides'],writing:['الكتابة والترجمة','Writing & Translation'],media:['الصوت والفيديو','Audio & Video'],data:['البيانات والرياضيات','Data & Math']};
-const tasks=[['','اختر مهمة...','Choose a task...'],['research','البحث العلمي أو الدراسة','Research or study'],['code','كتابة كود أو بناء تطبيق','Code or build an app'],['design','تصميم بوستر أو عرض','Design a poster or slides'],['writing','كتابة تقرير أو ترجمة','Write or translate'],['media','إنتاج فيديو أو صوت','Produce audio or video'],['data','تحليل البيانات أو الرياضيات','Analyze data or solve math'],['assist','شرح مفهوم أو عصف ذهني','Explain a concept or brainstorm']];
-const dict={cinemaKicker:["دليل الذكاء الاصطناعي للطلاب","THE STUDENT AI INDEX"],cinemaExplore:["استكشف الأدوات","Explore tools"],cinemaFields:["اختر مجالك","Choose your field"],fieldsTitle:["لكل فكرة، أداة.","Every idea needs a tool."],fieldsDesc:["ابدأ بالمجال الذي يناسب هدفك، واكتشف الأدوات المختارة له.","Start with what you want to achieve. Discover tools curated for your field."],fieldsLabel:["مجالات","FIELDS"],field_assist:["المساعدات الذكية","AI assistants"],fieldTag_assist:["افهم بعمق","Think clearly"],field_research:["البحث والدراسة","Research & study"],fieldTag_research:["ابحث عن المصادر","Find the evidence"],field_code:["البرمجة","Development"],fieldTag_code:["طوّر فكرتك","Build something"],field_design:["التصميم والعروض","Design & slides"],fieldTag_design:["حوّل أفكارك لتصاميم","Make ideas visible"],field_writing:["الكتابة والترجمة","Writing & translation"],fieldTag_writing:["عبّر عن أفكارك","Find your words"],field_media:["الصوت والفيديو","Audio & video"],fieldTag_media:["اصنع محتوى","Tell a story"],field_data:["البيانات والرياضيات","Data & math"],fieldTag_data:["اكتشف الأنماط","See the patterns"],favorites:['المفضلة','Favorites'],hero:['فضول بلا حدود.\nوإمكانات أكبر.','Curiosity without limits.\nIntelligence within reach.'],intro:['اكتشف الأدوات التي تساعدك على التعلّم والبحث والبرمجة والإبداع. دليلك من جمعية ناي للذكاء الاصطناعي.','Discover tools to learn, research, code and create. Curated by Najah AI Society.'],searchLabel:['ابحث عن أداة','Search tools'],tools:['أداة مختارة','Curated tools'],categories:['مجالات استخدام','Categories'],hub:['منصة واحدة','Student hub'],finder:['مش عارف من وين تبدأ؟','Not sure where to start?'],finderDesc:['اختار المهمة اللي بدك تنجزها، ومنرشّحلك أدوات مناسبة.','Choose what you want to do and explore relevant tools.'],taskLabel:['اختر المهمة','Choose a task'],directory:['استكشف الأدوات','Explore tools'],directoryDesc:['اختيارات عملية لمختلف التخصصات والاهتمامات.','Practical picks for different disciplines and interests.'],disclaimer:['الدليل مستقل ولا يتبع لمزوّدي الأدوات.','Independent directory; not affiliated with tool providers.'],responsible:['استخدم الذكاء الاصطناعي بمسؤولية','Use AI responsibly'],responsibleDesc:['راجع المعلومات والمصادر، لا ترفع بيانات شخصية أو سرية، والتزم بتعليمات مدرس المساق. استخدم الأدوات لتفهم وتتعلم، مش لتسلّم شغل ما بتقدر تشرحه.','Verify information and sources, avoid uploading personal or confidential data, and follow course policies. Use AI to learn, not to submit work you cannot explain.'],plans:['قد تتغير الخطط والأسعار والتوفر الجغرافي. راجع الموقع الرسمي لكل أداة.','Plans, prices and regional availability may change. Check each official website.'],footer:['مبادرة طلابية معرفية · نسخة أولية','Student knowledge initiative · Prototype'],clear:['مسح','Clear'],compare:['مقارنة','Compare']};
-Object.assign(dict,{edition:['دليل ناي للذكاء الاصطناعي','THE NAI AI INDEX'],exploreNav:['استكشف','Explore'],finderNav:['دليل الاختيار','Tool finder'],guideNav:['الاستخدام المسؤول','Responsible AI'],browse:['تصفح المكتبة','Browse the directory'],metric1:['مكتبة منتقاة بعناية','Carefully curated'],metric2:['من الدراسة إلى الإبداع','From study to creation'],metric3:['من الطلاب وإليهم','Built for students'],metric4:['مبادرة معرفية طلابية','Student-led initiative']});
+const tasks=[['','اختار مهمة','Choose a task'],['research','البحث العلمي أو الدراسة','Research or study'],['code','كتابة كود أو بناء تطبيق','Code or build an app'],['design','تصميم بوستر أو عرض','Design a poster or slides'],['writing','كتابة تقرير أو ترجمة','Write or translate'],['media','إنتاج فيديو أو صوت','Produce audio or video'],['data','تحليل البيانات أو الرياضيات','Analyze data or solve math'],['assist','شرح مفهوم أو عصف ذهني','Explain a concept or brainstorm']];
+const dict={cinemaKicker:["دليل الذكاء الاصطناعي للطلاب","AI TOOLS FOR STUDENTS"],cinemaExplore:["استكشف الأدوات","Explore tools"],cinemaFields:["اختار مجالك","Browse by field"],fieldsTitle:["شو حابب تعمل","What do you want to work on"],fieldsDesc:["اختار المجال اللي بهمك وشوف الأدوات اللي ممكن تساعدك فيه","Pick a field to see which tools can help you"],fieldsLabel:["مجالات","FIELDS"],field_assist:["المساعدات الذكية","AI assistants"],fieldTag_assist:["اسأل وافهم","Ask and learn"],field_research:["البحث والدراسة","Research & study"],fieldTag_research:["دور على أبحاث ومراجع","Find papers and sources"],field_code:["البرمجة","Development"],fieldTag_code:["اكتب كود وطور مشاريعك","Write code and build projects"],field_design:["التصميم والعروض","Design & slides"],fieldTag_design:["صمم بوسترات وعروض","Design posters and slides"],field_writing:["الكتابة والترجمة","Writing & translation"],fieldTag_writing:["اكتب وترجم وراجع نصوصك","Write and translate"],field_media:["الصوت والفيديو","Audio & video"],fieldTag_media:["اشتغل على الصوت والفيديو","Work with audio and video"],field_data:["البيانات والرياضيات","Data & math"],fieldTag_data:["حل مسائل وحلل بيانات","Solve problems and analyze data"],favorites:['المفضلة','Favorites'],hero:['تعلم أكثر\nوجرب أدوات جديدة','Find the right tools\nfor the way you learn'],intro:['جمعنالك أدوات الذكاء الاصطناعي اللي بتفيدك بالدراسة والبحث والبرمجة والتصميم بمكان واحد من جمعية ناي للذكاء الاصطناعي','We brought together useful AI tools for studying and research as well as coding and design at Najah AI Society'],searchLabel:['ابحث عن أداة','Search tools'],tools:['أداة','AI tools'],categories:['مجالات','Categories'],hub:['منصة واحدة','Student hub'],finder:['مش عارف من وين تبدأ','Need help getting started'],finderDesc:['احكيلنا شو بدك تعمل ومنعرضلك الأدوات اللي ممكن تفيدك','Choose what you need to do and we will show you relevant tools'],taskLabel:['اختر المهمة','Choose a task'],directory:['استكشف الأدوات','Explore tools'],directoryDesc:['تصفح الأدوات وشوف كيف ممكن تستفيد منها بتخصصك ومشاريعك','Browse the tools and see how they might help with your studies and projects'],disclaimer:['الدليل مستقل عن الشركات المطورة للأدوات','An independent directory with no affiliation to tool providers'],responsible:['استخدم الذكاء الاصطناعي بمسؤولية','Use AI responsibly'],responsibleDesc:['تأكد من المعلومات ومصادرها قبل ما تعتمد عليها وخلي بياناتك الشخصية والخاصة بعيدة عن الأدوات والتزم بتعليمات مدرس المساق واستخدم الذكاء الاصطناعي عشان تتعلم وتفهم شغلك بنفسك','Check information against its sources and keep personal or confidential data private\nFollow your course rules and use AI to learn rather than submitting work you do not understand'],plans:['الأسعار والخطط وتوفر الأدوات ممكن تتغير فالأفضل تتأكد من الموقع الرسمي','Prices and availability can change so check the official website for current information'],footer:['مبادرة من طلاب جامعة النجاح','A student initiative from An Najah National University'],clear:['مسح','Clear'],compare:['مقارنة','Compare']};
+Object.assign(dict,{edition:['دليل ناي للذكاء الاصطناعي','THE NAI AI INDEX'],exploreNav:['استكشف','Explore'],finderNav:['دليل الاختيار','Tool finder'],guideNav:['الاستخدام المسؤول','Responsible AI'],browse:['تصفح المكتبة','Browse the directory'],metric1:['أدوات مفيدة للدراسة','Tools for studying'],metric2:['من الدراسة إلى الإبداع','From study to creation'],metric3:['من الطلاب وإليهم','Built for students'],metric4:['مبادرة طلابية','Student initiative']});
 const categoryPaths={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',assist:'<path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/>',research:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',code:'<path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/>',design:'<path d="m12 3 9 9-9 9-9-9zM12 3v18M3 12h18"/>',writing:'<path d="M4 5h16M12 5v15M8 20h8"/>',media:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4z"/>',data:'<path d="M4 20V4M4 20h17M9 16v-5m5 5V7m5 9V3"/>'};
 
 
@@ -44,16 +44,16 @@ const categoryPaths={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x
 Object.assign(dict, {
   ashenOpen: ['استكشف معرض 3D', 'Explore the 3D shelf'],
   libraryTitle: ['مكتبة الذكاء التفاعلية', 'The Intelligence Library'],
-  libraryDesc: ['سبعة مجلدات معرفية تفتح لك عالم أدوات الذكاء الاصطناعي.', 'Seven interactive volumes for exploring AI, one collection at a time.'],
+  libraryDesc: ['سبع مجموعات من الأدوات بتقدر تستكشفها', 'Explore seven collections of AI tools'],
   libraryOpen: ['افتح المكتبة', 'Enter the library'],
   skip: ['انتقل إلى الأدوات', 'Skip to tools'],
   sortLabel: ['ترتيب الأدوات', 'Sort tools'],
-  reset: ['مسح الفلاتر', 'Clear filters'],
+  reset: ['إلغاء التصفية', 'Clear filters'],
   allTools: ['كل الأدوات', 'All tools'],
   noResults: ['ما لقينا أدوات مطابقة', 'No matching tools'],
-  noResultsDesc: ['جرّب كلمات أقل أو امسح الفلاتر لاستكشاف كل الأدوات.', 'Try fewer keywords or clear your filters to explore all tools.'],
-  noFavorites: ['أدواتك المفضلة تبدأ من هنا', 'Your favorites start here'],
-  noFavoritesDesc: ['اضغط على القلب بجانب أي أداة لحفظها والرجوع إلها لاحقًا.', 'Use the heart on any tool to save it here for later.'],
+  noResultsDesc: ['جرّب كلمات أقل أو اإلغاء التصفية لاستكشاف كل الأدوات.', 'Try a different search or browse all tools'],
+  noFavorites: ['لسا ما حفظت أي أداة', 'No saved tools yet'],
+  noFavoritesDesc: ['اضغط على القلب جنب الأداة عشان تحفظها وترجعلها بعدين', 'Tap the heart next to a tool to save it for later'],
   exploreAll: ['استكشف كل الأدوات', 'Explore all tools']
 });
 
@@ -163,12 +163,12 @@ function applyLanguage() {
   label('backtop', tr('العودة للأعلى', 'Back to top'));
   label('close', tr('إغلاق', 'Close dialog'));
   for (const id of ['search', 'directorySearch']) {
-    $(id).placeholder = tr('ابحث عن أداة أو مهمة...', 'Search tools or tasks...');
+    $(id).placeholder = tr('ابحث عن أداة أو مهمة', 'Search for a tool or task');
   }
   setText($('total'), String(tools.length));
   setText($('catTotal'), String(Object.keys(cats).length - 1));
   const sortValue = $('sort').value || 'default';
-  $('sort').innerHTML = `<option value="default">${tr('الترتيب المختار', 'Curated order')}</option><option value="az">${tr('الاسم A–Z', 'Name A–Z')}</option>`;
+  $('sort').innerHTML = `<option value="default">${tr('الترتيب الافتراضي', 'Default order')}</option><option value="az">${tr('حسب الاسم', 'By name')}</option>`;
   $('sort').value = sortValue;
   const taskValue = $('task').value;
   $('task').innerHTML = tasks.map(task => `<option value="${task[0]}">${task[lang === 'ar' ? 1 : 2]}</option>`).join('');
@@ -207,7 +207,7 @@ function cardArt(tool) {
   };
   const drawing = drawings[tool.cat] || drawings.assist;
   const n = String(tool.id+1).padStart(2,'0');
-  return '<div class="card-art" aria-hidden="true"><span class="card-index">FIELD / '+n+'</span><svg viewBox="0 0 280 96" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="1.25"><g opacity=".3"><path d="M0 24h280M0 48h280M0 72h280M40 0v96M80 0v96M120 0v96M160 0v96M200 0v96M240 0v96" stroke-dasharray="1 5"/><path d="M8 8h10M8 8v10m264 70h-10m10 0V78"/></g><g class="card-diagram">'+drawing+'</g></svg><span class="card-art-glint"></span></div>';
+  return '<div class="card-art" aria-hidden="true"><span class="card-index">FIELD '+n+'</span><svg viewBox="0 0 280 96" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="1.25"><g opacity=".3"><path d="M0 24h280M0 48h280M0 72h280M40 0v96M80 0v96M120 0v96M160 0v96M200 0v96M240 0v96" stroke-dasharray="1 5"/><path d="M8 8h10M8 8v10m264 70h-10m10 0V78"/></g><g class="card-diagram">'+drawing+'</g></svg><span class="card-art-glint"></span></div>';
 }
 
 function createCard(tool) {
@@ -224,9 +224,9 @@ function createCard(tool) {
         <button class="heart" type="button" data-act="fav" data-id="${tool.id}" aria-pressed="false">${icon('heart')}${icon('heart')}</button>
       </div>
       <p class="desc">${escapeHtml(tr(tool.ar, tool.en))}</p>
-      <p class="card-context"><strong>${tr('جرّبها في', 'Try it for')}</strong>${escapeHtml(tr(tool.useAr, tool.useEn))}</p>
+      <p class="card-context"><strong>${tr('كيف ممكن تستفيد منها', 'Try this')}</strong>${escapeHtml(tr(tool.useAr, tool.useEn))}</p>
       <div class="actions">
-        <a class="btn visit-link" href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('زيارة الموقع', 'Visit site')}${icon('external')}<span class="sr">${tr(' — يفتح في تبويب جديد', ' — opens in a new tab')}</span></a>
+        <a class="btn visit-link" href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('زيارة الموقع', 'Visit site')}${icon('external')}<span class="sr">${tr(' يفتح في تبويب جديد', ' opens in a new tab')}</span></a>
         <button class="btn" type="button" data-act="detail" data-id="${tool.id}" aria-label="${escapeHtml(tr(`تفاصيل ${tool.name}`, `Details about ${tool.name}`))}">${tr('التفاصيل', 'Details')}</button>
         <button class="btn compare" type="button" data-act="compare" data-id="${tool.id}" aria-pressed="false"><span class="compare-glyph">${icon('compare')}${icon('check')}</span></button>
       </div>
@@ -260,7 +260,7 @@ function updateCardState(id) {
     : tr(`إضافة ${tool.name} للمقارنة`, `Add ${tool.name} to comparison`);
   compare.setAttribute('aria-label', compareLabel);
   compare.title = !selected && selection.size === 3
-    ? tr('المقارنة ممتلئة. أزل أداة لإضافة غيرها.', 'Comparison is full. Remove a tool to add another.') : compareLabel;
+    ? tr('شيل أداة من المقارنة عشان تضيف غيرها', 'Remove a tool before adding another') : compareLabel;
 }
 function updateFavoritesUI() {
   $('favToggle').setAttribute('aria-pressed', String(onlyFav));
@@ -281,7 +281,7 @@ function updateComparison() {
   }
   document.body.classList.add('has-comparison');
   setText($('compareCount'), selection.size === 1
-    ? tr('أداة واحدة محددة · اختر أداة ثانية للمقارنة', '1 tool selected · Add another to compare')
+    ? tr('اختار أداة ثانية عشان تبدأ المقارنة', 'Choose another tool to start comparing')
     : tr(`${selection.size} من 3 أدوات للمقارنة`, `${selection.size} of 3 tools selected`));
   $('showCompare').disabled = selection.size < 2;
   motion.layout($('selectionList'), () => {
@@ -326,9 +326,9 @@ function render() {
     const heading = onlyFav && cat === 'all' ? text('favorites') : cat === 'all' ? text('allTools') : cName(cat);
     setText($('resultsHeading'), heading);
     setText($('count'), tr(`${rows.length} من ${tools.length} أداة`, `${rows.length} of ${tools.length} tools`));
-    const filters = [cat !== 'all' ? cName(cat) : '', onlyFav ? text('favorites') : '', query.trim() ? `“${query.trim()}”` : ''].filter(Boolean);
+    const filters = [cat !== 'all' ? cName(cat) : '', onlyFav ? text('favorites') : '', query.trim() ? query.trim() : ''].filter(Boolean);
     $('activeFilters').hidden = !filters.length;
-    setText($('filterSummary'), filters.join(' · '));
+    setText($('filterSummary'), filters.join('   '));
     syncSearchInputs();
     updateFavoritesUI();
     updateComparison();
@@ -388,7 +388,7 @@ function toggleComparison(id) {
   else if (selection.size < 3) selection.add(id);
   else {
     motion.reject(cards.get(id)?.querySelector('[data-act="compare"]'));
-    notify(tr('يمكنك مقارنة 3 أدوات. أزل أداة من شريط المقارنة لإضافة غيرها.', 'Compare up to 3 tools. Remove one from the comparison bar to add another.'));
+    notify(tr('بتقدر تقارن 3 أدوات مع بعض فشيل وحدة عشان تضيف غيرها', 'You can compare up to 3 tools at once'));
     return;
   }
   cards.forEach((card, toolId) => updateCardState(toolId));
@@ -402,13 +402,13 @@ function openModal(title, html, origin = null) {
   $('modal').scrollTop = 0;
 }
 function officialLink(tool) {
-  return `<a class="btn primary" href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('الموقع الرسمي', 'Official website')}${icon('external')}<span class="sr">${tr(' — يفتح في تبويب جديد', ' — opens in a new tab')}</span></a>`;
+  return `<a class="btn primary" href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('الموقع الرسمي', 'Official website')}${icon('external')}<span class="sr">${tr(' يفتح في تبويب جديد', ' opens in a new tab')}</span></a>`;
 }
 function showDetails(id, origin = null) {
   const tool = tools[id];
   openModal(tool.name, `<p class="detail-category">${cName(tool.cat)}</p>
     <p>${escapeHtml(tr(tool.ar, tool.en))}</p>
-    <h3>${tr('كيف تستخدمها كطالب؟', 'How to use it as a student')}</h3>
+    <h3>${tr('كيف ممكن تستخدمها بدراستك', 'How it can help with your studies')}</h3>
     <p>${escapeHtml(tr(tool.useAr, tool.useEn))}</p>
     <p class="notice">${text('plans')}</p>${officialLink(tool)}`, origin);
 }
@@ -417,14 +417,14 @@ function showComparison() {
   if (selected.length < 2) return;
   const row = (title, value) => `<tr><th scope="row">${title}</th>${selected.map(tool => `<td>${value(tool)}</td>`).join('')}</tr>`;
   openModal(tr('مقارنة الأدوات', 'Compare tools'), `
-    <p class="table-hint">${tr('اسحب الجدول أفقيًا لرؤية جميع الأدوات على شاشة صغيرة.', 'On smaller screens, scroll the table horizontally to see every tool.')}</p>
+    <p class="table-hint">${tr('إذا الشاشة صغيرة اسحب الجدول عشان تشوف كل الأدوات', 'Scroll across the table to see all the tools on a smaller screen')}</p>
     <div class="tablewrap" role="region" aria-label="${tr('جدول مقارنة الأدوات', 'Tool comparison table')}" tabindex="0">
       <table><caption class="sr">${tr('مقارنة المجالات والوظائف والأمثلة العملية', 'Compare categories, purposes, and student use cases')}</caption>
         <thead><tr><th scope="col">${tr('المعيار', 'Criteria')}</th>${selected.map(tool => `<th scope="col"><bdi>${escapeHtml(tool.name)}</bdi></th>`).join('')}</tr></thead>
         <tbody>${row(tr('المجال', 'Category'), tool => cName(tool.cat))}
           ${row(tr('الوظيفة', 'Purpose'), tool => escapeHtml(tr(tool.ar, tool.en)))}
           ${row(tr('مثال عملي', 'Use case'), tool => escapeHtml(tr(tool.useAr, tool.useEn)))}
-          ${row(tr('الرابط', 'Website'), tool => `<a href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('زيارة', 'Visit')}<span class="sr">${tr(' — يفتح في تبويب جديد', ' — opens in a new tab')}</span></a>`)}
+          ${row(tr('الرابط', 'Website'), tool => `<a href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('زيارة', 'Visit')}<span class="sr">${tr(' يفتح في تبويب جديد', ' opens in a new tab')}</span></a>`)}
         </tbody></table>
     </div><p class="notice">${text('plans')}</p>`);
 }
@@ -542,7 +542,7 @@ function renderSuggestions(){
   const words=normalize(commandInput.value).split(/\s+/).filter(Boolean);
   if(!words.length||!$('heroSearchForm').contains(document.activeElement)){hideSuggestions();return;}
   const matches=tools.filter(tool=>words.every(w=>searchIndex.get(tool.id).includes(w))).sort((a,b)=>Number(normalize(b.name).startsWith(words[0]))-Number(normalize(a.name).startsWith(words[0]))).slice(0,5);
-  command.innerHTML='<p class="command-caption">'+escapeHtml(tr('نتائج سريعة','Quick matches'))+'</p>'+ (matches.length?matches.map(tool=>'<button type="button" class="command-option" data-suggest="'+tool.id+'"><span class="command-mark" style="--mark:'+tool.color+'" aria-hidden="true">'+escapeHtml(tool.name.slice(0,2))+'</span><span><bdi>'+escapeHtml(tool.name)+'</bdi><small>'+escapeHtml(cName(tool.cat))+'</small></span>'+icon('arrow')+'</button>').join(''):'<p class="command-empty">'+escapeHtml(tr('لا توجد نتائج مطابقة','No matching tools'))+'</p>');
+  command.innerHTML='<p class="command-caption">'+escapeHtml(tr('أدوات ممكن تكون بتدور عليها','Suggested tools'))+'</p>'+ (matches.length?matches.map(tool=>'<button type="button" class="command-option" data-suggest="'+tool.id+'"><span class="command-mark" style="--mark:'+tool.color+'" aria-hidden="true">'+escapeHtml(tool.name.slice(0,2))+'</span><span><bdi>'+escapeHtml(tool.name)+'</bdi><small>'+escapeHtml(cName(tool.cat))+'</small></span>'+icon('arrow')+'</button>').join(''):'<p class="command-empty">'+escapeHtml(tr('ما لقينا أدوات مطابقة','No matching tools'))+'</p>');
   command.hidden=false;commandInput.setAttribute('aria-expanded','true');
 }
 commandInput.setAttribute('aria-controls','grid heroSuggestions');commandInput.setAttribute('aria-expanded','false');
