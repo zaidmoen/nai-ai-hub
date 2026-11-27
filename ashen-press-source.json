@@ -1,0 +1,13 @@
+{
+  "name": "Ashen Press",
+  "source": "https://threeui.com/three-js/ashen-press",
+  "path": "src/shaders/ashen-press/sources/ashen-press.html",
+  "sha256": "5fe2554e578acac5d55cb466a9564440e7767e38797981f8e829dfd2de0bc90f",
+  "gitBlob": "c106f2f4860d3332ebd8dea124d624ecac6fa3d1",
+  "bytes": 1156000,
+  "embeddedImages": 20,
+  "threeVersion": "0.181.0",
+  "normalization": "CRLF to LF only; matches registered SHA-256 revision",
+  "host": "ashen-press.html",
+  "sandbox": "allow-scripts"
+}

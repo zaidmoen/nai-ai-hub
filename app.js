@@ -42,6 +42,7 @@ const categoryPaths={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x
 
 // Interaction labels are localized alongside the original catalog copy.
 Object.assign(dict, {
+  ashenOpen: ['استكشف معرض 3D', 'Explore the 3D shelf'],
   libraryTitle: ['مكتبة الذكاء التفاعلية', 'The Intelligence Library'],
   libraryDesc: ['سبعة مجلدات معرفية تفتح لك عالم أدوات الذكاء الاصطناعي.', 'Seven interactive volumes for exploring AI, one collection at a time.'],
   libraryOpen: ['افتح المكتبة', 'Enter the library'],
