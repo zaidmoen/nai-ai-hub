@@ -33,6 +33,10 @@ Open `mcp.html` for 6 curated server setup guides with provider documentation an
 
 Both hubs share bilingual navigation, search, category filters, saved items in localStorage, dark/light settings, and responsive layouts.
 
+## Model Arena
+
+Open `arena.html` to compare seven model/effort profiles. The default selection is Kimi K3.1 Pro, DeepSeek V4.1 Flash 1017 (Max), and GPT-6.2 Sol (Max). The dated dataset in `arena-data.js` was transcribed on 2026-11-27 from Artificial Analysis Intelligence Index v5.0.2, its performance leaderboard, and two release comparisons. Scores, benchmark cost per task (USD), time per task (minutes), first-answer-token latency (seconds), error rate, and context are displayed with their original units and provider names. Selected capability and science scores are included only when verified; null means unavailable and is never rendered as zero. The charts are native HTML/CSS and SVG, not live inference or NAI-run benchmarks. The data is a fixed snapshot and must be refreshed deliberately when sources change. Cost per benchmark task is not a subscription price. No external runtime or API key is required. Sources are linked on the page.
+
 ## Frontend performance
 
 The current homepage uses a local WebGL filament scene and an SVG fallback. Rendering is visibility-aware and respects reduced motion. Prompt Studio has no GPU renderer or external runtime dependencies.
