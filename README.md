@@ -68,3 +68,6 @@ git diff --check
 ```
 
 The implementation was also checked with 23 DOM interaction checks, 15 deterministic Web Animations lifecycle checks, and an automated accessibility structure scan. These cover search, filters, focus retention, favorites, comparison limits, dialogs, localization, corrupt stored settings, interrupted exits, rapid reversals, reduced motion, FLIP cleanup, and compositor-property restrictions. They do not replace visual device testing or browser performance measurements.
+
+## Library V2
+Skills Hub includes 20 entries (12 source-linked external projects and 8 downloadable NAI originals). External resources are not bundled or installed; consult their upstream README and license. MCP Hub includes 9 setup guides. Prompt Studio includes 34 templates with scoped execution and verification instructions. All three pages support curated picks, category search, secondary filters, sorting, and clear-filter recovery. Upstream sources reviewed on 2026-11-27; installation and browser behavior were not tested.
