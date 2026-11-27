@@ -1,0 +1,3 @@
+# Resource icon provenance
+
+Brand paths available in this bundle come from [Simple Icons](https://github.com/simple-icons/simple-icons/tree/801eaab5b70f4933137069397ebbd2ce5f9ad56e/icons) at commit 801eaab5b70f4933137069397ebbd2ce5f9ad56e: anthropic, cursor, deepseek, figma, github, googlechrome, googlegemini, huggingface, linear, perplexity, replit, supabase, vercel. Simple Icons' artwork is distributed under CC0; individual trademarks remain their owners' property and may have usage restrictions. See the upstream license and brand guidelines. No affiliation or endorsement is implied. Other icons are original functional glyphs, not brand logos. All SVG paths are stored locally; no icon API or network requests are needed at runtime.
