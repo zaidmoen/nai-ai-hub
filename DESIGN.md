@@ -27,3 +27,5 @@ Design intent: a compact editorial knowledge platform, not a collection of unrel
 
 ## Neural Atlas
 The homepage uses six real navigation nodes around a central NAI orb, SVG radial paths, native Canvas 2D particle terrain and a synthetic rotating dotted sphere. The HTML links and CSS sphere remain available without Canvas. The preview changes on pointer hover and keyboard focus. All counts come from the existing catalogs and validated local favorite IDs. The globe is abstract rather than geographic. Motion is paused offscreen and when hidden and is disabled for reduced motion. Chose native Canvas/SVG/CSS over new Three.js/GSAP dependencies to preserve the static site and improve progressive fallback. No generated screenshot is used as the interface. Browser visual verification remains outstanding.
+
+The supporting prompt and benchmark cards are sourced from the same local catalogs. Benchmark values are the existing dated snapshot, not newly measured or live results. Canvas painting is capped at 30fps on desktop and approximately 24fps on smaller stages.

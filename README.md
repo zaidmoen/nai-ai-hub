@@ -77,3 +77,5 @@ The homepage now presents five functional resource portals in a single lightweig
 
 ## Neural Atlas
 The homepage features a six-destination interactive radial atlas including My Workspace. Native SVG connectors and a lightweight Canvas 2D particle field provide the visual scene, with CSS fallbacks and reduced-motion support. Hover or focus a node for a description and follow the link to its actual page. Catalog counts remain data-driven and workspace counts use the existing local favorites. No build or CDN is required. See `neural-atlas.css` and `neural-atlas.js`.
+
+Homepage preview cards use the existing prompt library and dated Model Arena dataset. Benchmark values are not a live feed.
