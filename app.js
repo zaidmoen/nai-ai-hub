@@ -125,7 +125,7 @@ function syncSearchInputs() {
 }
 function applyTheme() {
   document.documentElement.dataset.theme = theme;
-  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#14131c' : '#f7f8fc';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#090e22' : '#f4f5fc';
   const title = theme === 'dark'
     ? tr('تفعيل المظهر الفاتح', 'Switch to light theme')
     : tr('تفعيل المظهر الداكن', 'Switch to dark theme');
@@ -389,23 +389,23 @@ function toggleComparison(id) {
   cards.forEach((card, toolId) => updateCardState(toolId));
   updateComparison();
 }
-function openModal(title, html) {
+function openModal(title, html, origin = null) {
   $('modalTitle').textContent = title;
   $('modalBody').innerHTML = html;
-  motion.openDialog($('modal'));
+  motion.openDialog($('modal'), origin);
   document.body.classList.add('modal-open');
   $('modal').scrollTop = 0;
 }
 function officialLink(tool) {
   return `<a class="btn primary" href="${tool.url}" target="_blank" rel="noopener noreferrer">${tr('الموقع الرسمي', 'Official website')}${icon('external')}<span class="sr">${tr(' — يفتح في تبويب جديد', ' — opens in a new tab')}</span></a>`;
 }
-function showDetails(id) {
+function showDetails(id, origin = null) {
   const tool = tools[id];
   openModal(tool.name, `<p class="detail-category">${cName(tool.cat)}</p>
     <p>${escapeHtml(tr(tool.ar, tool.en))}</p>
     <h3>${tr('كيف تستخدمها كطالب؟', 'How to use it as a student')}</h3>
     <p>${escapeHtml(tr(tool.useAr, tool.useEn))}</p>
-    <p class="notice">${text('plans')}</p>${officialLink(tool)}`);
+    <p class="notice">${text('plans')}</p>${officialLink(tool)}`, origin);
 }
 function showComparison() {
   const selected = [...selection].map(id => tools[id]);
@@ -439,7 +439,7 @@ $('grid').addEventListener('click', event => {
   if (button.dataset.act === 'reset') resetFilters();
   else if (button.dataset.act === 'fav') toggleFavorite(id);
   else if (button.dataset.act === 'compare') toggleComparison(id);
-  else if (button.dataset.act === 'detail') showDetails(id);
+  else if (button.dataset.act === 'detail') showDetails(id, button.closest('.card-surface')?.getBoundingClientRect());
 });
 for (const id of ['search', 'directorySearch']) {
   $(id).addEventListener('input', scheduleSearch);
@@ -522,5 +522,29 @@ document.querySelector('a[href="#finder"]').addEventListener('click', () => { mo
 window.addEventListener('hashchange', syncNav);
 $('finder').open = !matchMedia('(max-width: 760px)').matches || location.hash === '#finder';
 motion.bindDisclosure($('finder'), $('grid'));
+
+/* Native search suggestions, using the exact same catalog and normalized query. */
+const command = $('heroSuggestions');
+const commandInput = $('search');
+function hideSuggestions(){command.hidden=true;command.replaceChildren();commandInput.setAttribute('aria-expanded','false');}
+function renderSuggestions(){
+  const words=normalize(commandInput.value).split(/\s+/).filter(Boolean);
+  if(!words.length||!$('heroSearchForm').contains(document.activeElement)){hideSuggestions();return;}
+  const matches=tools.filter(tool=>words.every(w=>searchIndex.get(tool.id).includes(w))).sort((a,b)=>Number(normalize(b.name).startsWith(words[0]))-Number(normalize(a.name).startsWith(words[0]))).slice(0,5);
+  command.innerHTML='<p class="command-caption">'+escapeHtml(tr('نتائج سريعة','Quick matches'))+'</p>'+ (matches.length?matches.map(tool=>'<button type="button" class="command-option" data-suggest="'+tool.id+'"><span class="command-mark" style="--mark:'+tool.color+'" aria-hidden="true">'+escapeHtml(tool.name.slice(0,2))+'</span><span><bdi>'+escapeHtml(tool.name)+'</bdi><small>'+escapeHtml(cName(tool.cat))+'</small></span>'+icon('arrow')+'</button>').join(''):'<p class="command-empty">'+escapeHtml(tr('لا توجد نتائج مطابقة','No matching tools'))+'</p>');
+  command.hidden=false;commandInput.setAttribute('aria-expanded','true');
+}
+commandInput.setAttribute('aria-controls','grid heroSuggestions');commandInput.setAttribute('aria-expanded','false');
+commandInput.addEventListener('input',e=>{if(!e.isComposing)renderSuggestions();});
+commandInput.addEventListener('compositionend',renderSuggestions);
+commandInput.addEventListener('focus',renderSuggestions);
+commandInput.addEventListener('keydown',e=>{if(e.key==='ArrowDown'&&!command.hidden){const first=command.querySelector('button');if(first){e.preventDefault();first.focus();}}else if(e.key==='Escape'&&!command.hidden){e.preventDefault();hideSuggestions();}});
+command.addEventListener('keydown',e=>{const buttons=[...command.querySelectorAll('button')],i=buttons.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();commandInput.focus();hideSuggestions();}else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const next=i+(e.key==='ArrowDown'?1:-1);if(next<0)commandInput.focus();else buttons[Math.min(next,buttons.length-1)]?.focus();}});
+command.addEventListener('click',e=>{const b=e.target.closest('[data-suggest]');if(!b)return;const tool=tools[Number(b.dataset.suggest)];if(!tool)return;cat='all';onlyFav=false;query=tool.name;$('task').value='';hideSuggestions();showResults();});
+document.querySelector('.hero-command').addEventListener('focusout',e=>{if(!e.currentTarget.contains(e.relatedTarget))hideSuggestions();});
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('.hero-command'))hideSuggestions();},{passive:true});
+$('heroSearchForm').addEventListener('submit',hideSuggestions);
+$('lang').addEventListener('click',hideSuggestions);
+
 applyLanguage();
 syncNav();

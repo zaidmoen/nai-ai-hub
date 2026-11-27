@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="NAI AI Hub — A curated AI directory for students.">
-  <meta name="theme-color" content="#14131c">
+  <meta name="theme-color" content="#090e22">
   <title>NAI AI Hub — The student AI index</title>
   <script>
     (() => {
@@ -22,9 +22,11 @@
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="observatory.css">
+  <link rel="stylesheet" href="prism.css">
   <script src="motion.js" defer></script>
   <script src="app.js" defer></script>
   <script src="card-motion.js" defer></script>
+  <script type="module" src="prism-hero.js"></script>
 </head>
 <body>
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -68,20 +70,22 @@
 
   <main id="top" class="wrap">
     <section class="hero" aria-labelledby="heroTitle">
-      <img class="hero-art" src="assets/paper-loop-1080.webp"
-           srcset="assets/paper-loop-540.webp 540w, assets/paper-loop-1080.webp 1080w"
-           sizes="(max-width: 640px) 39vw, (max-width: 1400px) 48vw, 650px"
-           width="1080" height="720" fetchpriority="high" alt="">
+      <div class="prism-visual" aria-hidden="true">
+        <img class="prism-fallback" src="assets/prism-orbit.svg" width="640" height="460" alt="">
+        <canvas class="prism-canvas"></canvas>
+        <span class="prism-coordinate">NAI / FIELD 01</span>
+      </div>
       <div class="hero-copy">
         <h1 id="heroTitle" data-i="hero">ذكاء بلا حدود.<br>ابدأ من هنا.</h1>
         <p data-i="intro">اكتشف الأدوات التي تساعدك على التعلّم والبحث والبرمجة والإبداع. دليلك من جمعية ناي للذكاء الاصطناعي.</p>
-        <form class="search hero-search" id="heroSearchForm" role="search" aria-label="البحث في الأدوات">
+        <div class="hero-command"><form class="search hero-search" id="heroSearchForm" role="search" aria-label="البحث في الأدوات">
           <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
           <label class="sr" for="search" data-i="searchLabel">ابحث عن أداة</label>
           <input id="search" type="search" placeholder="ابحث عن أداة أو مهمة..." autocomplete="off" enterkeyhint="search" spellcheck="false" aria-controls="grid">
           <kbd aria-hidden="true">/</kbd>
           <button class="search-submit" id="heroSearch" type="submit" aria-label="عرض نتائج البحث"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
         </form>
+        <div class="command-results" id="heroSuggestions" hidden></div></div>
         <div class="metrics" id="metrics" role="group" aria-label="نظرة على الدليل">
           <span class="metric"><b id="total">30</b><span data-i="tools">أداة مختارة</span></span>
           <span class="metric"><b id="catTotal">7</b><span data-i="categories">مجالات استخدام</span></span>

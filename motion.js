@@ -146,10 +146,10 @@
       delete dialog.dataset.closing;
     });
   }
-  function openDialog(dialog) {
+  function openDialog(dialog, origin = null) {
     bindDialog(dialog);
     const wasOpen = dialog.open;
-    const from = wasOpen ? current(dialog) : { opacity: 0, transform: 'translateY(8px) scale(0.96)' };
+    let from = wasOpen ? current(dialog) : { opacity: 0, transform: 'translateY(8px) scale(0.96)' };
     cancel(dialog, 'dialog');
     delete dialog.dataset.closing;
     if (!wasOpen) {
@@ -158,9 +158,16 @@
       // Resolve the backdrop's initial opacity before starting both enters.
       if (canAnimate(dialog)) getComputedStyle(dialog, '::backdrop').opacity;
     }
+    if (!wasOpen && origin && canAnimate(dialog) && origin.width > 0 && origin.height > 0) {
+      const dest = dialog.getBoundingClientRect();
+      const scale = Math.max(.42, Math.min(.88, origin.width / Math.max(dest.width,1), origin.height / Math.max(dest.height,1)));
+      const dx = origin.left + origin.width/2 - dest.left - dest.width/2;
+      const dy = origin.top + origin.height/2 - dest.top - dest.height/2;
+      from = {opacity:.35, transform:`translate(${dx}px,${dy}px) scale(${scale})`};
+    }
     dialog.dataset.motionVisible = 'true';
     run(dialog, 'dialog', [from, { opacity: 1, transform: 'none' }], {
-      duration: timing.enter, easing: timing.easeEnter
+      duration: origin && !wasOpen ? 340 : timing.enter, easing: timing.easeEnter
     });
   }
   function closeDialog(dialog) {
