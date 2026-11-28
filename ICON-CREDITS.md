@@ -1,3 +1,5 @@
 # Resource icon provenance
 
+The OpenAI outline glyph is from [Tabler Icons, brand-openai](https://github.com/tabler/tabler-icons/blob/main/icons/outline/brand-openai.svg), distributed under the [MIT license](https://github.com/tabler/tabler-icons/blob/main/LICENSE). Its SVG paths are stored locally in `src/data/icons.json` and identify ChatGPT in the tool catalog.
+
 Brand paths available in this bundle come from [Simple Icons](https://github.com/simple-icons/simple-icons/tree/801eaab5b70f4933137069397ebbd2ce5f9ad56e/icons) at commit 801eaab5b70f4933137069397ebbd2ce5f9ad56e: anthropic, cursor, deepl, deepseek, elevenlabs, figma, github, githubcopilot, googlechrome, googlecolab, googlegemini, grammarly, huggingface, linear, perplexity, replit, supabase, vercel. Simple Icons' artwork is distributed under CC0; individual trademarks remain their owners' property and may have usage restrictions. See the upstream license and brand guidelines. No affiliation or endorsement is implied. Other icons are original functional glyphs, not brand logos. All SVG paths are stored locally; no icon API or network requests are needed at runtime.
