@@ -156,8 +156,8 @@
       "openai-docs": "documentation"
     },
     "models": {
-      "sol": "assist",
-      "astra": "assist",
+      "sol": "openai",
+      "astra": "openai",
       "kimi": "ml",
       "deepseek": "deepseek",
       "fable": "anthropic",
