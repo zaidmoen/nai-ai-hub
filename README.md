@@ -16,6 +16,8 @@ Use Node.js 20.19 or newer, then run `npm install` and `npm run dev`. The Vite U
 
 ## Design and motion
 
+The current homepage uses an architectural gateway scene in `public/home-gateway.webp`, with six functional destination cards and additional Radar and Workspace links. The original `public/logo.svg` is preserved in the navigation and overlaid on the sphere as a white display variant using CSS. The generated background contains no replacement logo. Counts come from the local catalogs. The art prompt describes an illuminated stone university courtyard, orbital violet sphere, amber lanterns, and reflective floor, leaving space for live text and cards. Arabic and English layouts and the platform tour were checked in the browser at 1672, 1280, and 390 pixels; captures are in `docs/visual-qa/gateway-*`.
+
 The two generated visual assets are `public/radar-earth.webp` and `public/roadmap-world.webp` (about 150 KB each). Live text, controls, timeline, stage nodes, and progress indicators remain React elements. The new scoped styling is in `src/radar-roadmaps.css`. State-driven feedback uses 140 ms `cubic-bezier(.2,0,0,1)`; panel entries use 230–240 ms `cubic-bezier(.16,1,.3,1)`. Only transform and opacity animate, and reduced-motion users receive instant state changes.
 
 Browser captures of both routes at 1920×1080, 1440×900, 1280×800, and 390×844 are in `docs/visual-qa`. English mobile captures are included. Browser checks covered page errors, horizontal overflow, bookmarks, and persisted stage completion. A production build and typecheck were intentionally not run, per the project request.
